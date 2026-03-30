@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taty-Vanille | Le goût authentique de Madagascar</title>
+    
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,6 +19,9 @@
             }
         }
     </script>
+    
+    <!-- Ajout de Lucide Icons pour les icônes standards -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="min-h-screen bg-[#F1F4C6] text-[#1A4331] font-sans selection:bg-[#1A4331] selection:text-[#E3E779]">
 
@@ -49,10 +54,9 @@
                     </a>
                 </nav>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="p-2 transition-colors">
-                        <svg id="menu-icon" class="w-7 h-7 text-[#1A4331]" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <use xlink:href="assets/icons/_sprite.svg#menu"></use>
-                        </svg>
+                    <button id="mobile-menu-btn" class="p-2 transition-colors text-[#1A4331]">
+                        <i data-lucide="menu" id="icon-menu" class="w-7 h-7 block"></i>
+                        <i data-lucide="x" id="icon-close" class="w-7 h-7 hidden"></i>
                     </button>
                 </div>
             </div>
@@ -83,7 +87,8 @@
                 <a href="a_propos_de_nous.html" class="bg-transparent border border-[#E3E779] text-[#E3E779] px-8 py-4 rounded-md font-medium hover:bg-[#E3E779] hover:text-[#1A4331] transition-colors duration-300 flex items-center justify-center">Qui sommes-nous ?</a>
             </div>
             
-            <div class="flex absolute bottom-4 right-4 w-24 h-24 md:bottom-8 md:right-8 md:w-32 md:h-32 lg:bottom-16 lg:right-16 lg:w-40 lg:h-40 items-center justify-center group cursor-default z-20">
+            <!-- Macaron avec position mobile (haut-droite) et desktop (bas-droite) -->
+            <div class="flex absolute top-4 right-4 md:top-auto md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 items-center justify-center group cursor-default z-20">
                 <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#E3E779] fill-current opacity-90 animate-spin-slow">
                     <defs><path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/></defs>
                     <text font-size="13" font-weight="bold" letter-spacing="2" class="uppercase">
@@ -91,7 +96,10 @@
                     </text>
                 </svg>
                 <div class="relative z-10 transform group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                    <img src="assets/icons/vanille.svg" alt="Icône vanille" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+                    <!-- Utilisation du sprite sur-mesure pour la vanille -->
+                    <svg class="icon w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+                        <use xlink:href="assets/icons/_sprite.svg#vanille"></use>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -149,9 +157,7 @@
                     <p class="text-[#2D5D46]">Découvrez notre sélection de gousses Bourbon d'exception.</p>
                 </div>
                 <a href="contact.html" class="hidden sm:flex items-center text-[#1A4331] font-medium hover:text-[#2D5D46] transition-colors group">Demander nos tarifs 
-                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <use xlink:href="assets/icons/_sprite.svg#arrow-right"></use>
-                    </svg>
+                    <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:pb-16">
@@ -165,9 +171,7 @@
                         <p class="text-sm text-[#2D5D46] mb-4 h-10 line-clamp-2">Vanille Bourbon de Madagascar - Qualité Premium, fort taux de vanilline.</p>
                         <div class="mt-4 pt-4 border-t border-[#D5DB9E]">
                             <a href="contact.html" class="text-[#1A4331] font-medium hover:text-[#2D5D46] transition-colors flex items-center">Plus de détails 
-                                <svg class="w-4 h-4 ml-1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <use xlink:href="assets/icons/_sprite.svg#chevron-right"></use>
-                                </svg>
+                                <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                             </a>
                         </div>
                     </div>
@@ -182,9 +186,7 @@
                         <p class="text-sm text-[#2D5D46] mb-4 h-10 line-clamp-2">Vanille Bourbon de Madagascar - Affinage traditionnel, arômes subtils.</p>
                         <div class="mt-4 pt-4 border-t border-[#D5DB9E]">
                             <a href="contact.html" class="text-[#1A4331] font-medium hover:text-[#2D5D46] transition-colors flex items-center">Plus de détails 
-                                <svg class="w-4 h-4 ml-1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <use xlink:href="assets/icons/_sprite.svg#chevron-right"></use>
-                                </svg>
+                                <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                             </a>
                         </div>
                     </div>
@@ -199,9 +201,7 @@
                         <p class="text-sm text-[#2D5D46] mb-4 h-10 line-clamp-2">Idéal pour les extraits et les pâtisseries du quotidien.</p>
                         <div class="mt-4 pt-4 border-t border-[#D5DB9E]">
                             <a href="contact.html" class="text-[#1A4331] font-medium hover:text-[#2D5D46] transition-colors flex items-center">Plus de détails 
-                                <svg class="w-4 h-4 ml-1" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <use xlink:href="assets/icons/_sprite.svg#chevron-right"></use>
-                                </svg>
+                                <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                             </a>
                         </div>
                     </div>
@@ -209,9 +209,7 @@
             </div>
             <div class="mt-10 text-center sm:hidden">
                 <a href="contact.html" class="inline-flex items-center text-[#1A4331] font-medium hover:text-[#2D5D46] transition-colors">Demander nos tarifs 
-                    <svg class="w-5 h-5 ml-2" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <use xlink:href="assets/icons/_sprite.svg#arrow-right"></use>
-                    </svg>
+                    <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
                 </a>
             </div>
         </div>
@@ -225,10 +223,10 @@
                     <p class="text-[#F1F4C6]/80 text-sm mb-6 leading-relaxed">Le goût authentique de la vanille de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.</p>
                     <div class="flex space-x-4">
                         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Instagram">
-                            <svg class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="assets/icons/_sprite.svg#instagram"></use></svg>
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
                         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Facebook">
-                            <svg class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="assets/icons/_sprite.svg#facebook"></use></svg>
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
                     </div>
                 </div>
@@ -255,15 +253,15 @@
                     <h4 class="text-[#E3E779] font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
                     <ul class="space-y-4 text-sm text-[#F1F4C6]/80">
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0 mt-0.5" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="assets/icons/_sprite.svg#map-pin"></use></svg>
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0 mt-0.5"></i>
                             <span>50, Rue de l'Orme<br>91460 MARCOUSSIS<br>France</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="assets/icons/_sprite.svg#phone"></use></svg>
+                            <i data-lucide="phone" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0"></i>
                             <span>+33 7 83 47 29 83</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="assets/icons/_sprite.svg#mail"></use></svg>
+                            <i data-lucide="mail" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0"></i>
                             <a href="mailto:contact@taty-vanille.com" class="hover:text-[#E3E779] transition-colors">contact@taty-vanille.com</a>
                         </li>
                     </ul>
@@ -277,22 +275,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialisation des icônes Lucide
+            lucide.createIcons();
+
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
-            const iconUse = document.querySelector('#menu-icon use');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
             let isOpen = false;
+
             btn.addEventListener('click', () => {
                 isOpen = !isOpen;
                 if (isOpen) {
                     menu.classList.remove('max-h-0', 'opacity-0');
                     menu.classList.add('max-h-[400px]', 'opacity-100');
-                    iconUse.setAttribute('xlink:href', 'assets/icons/_sprite.svg#x');
+                    // Basculer l'affichage des icônes de façon fluide
+                    iconMenu.classList.add('hidden');
+                    iconMenu.classList.remove('block');
+                    iconClose.classList.add('block');
+                    iconClose.classList.remove('hidden');
                 } else {
                     menu.classList.remove('max-h-[400px]', 'opacity-100');
                     menu.classList.add('max-h-0', 'opacity-0');
-                    iconUse.setAttribute('xlink:href', 'assets/icons/_sprite.svg#menu');
+                    // Rétablir l'icône menu
+                    iconMenu.classList.add('block');
+                    iconMenu.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                    iconClose.classList.remove('block');
                 }
             });
+
             const header = document.getElementById('main-header');
             const headerContainer = document.getElementById('header-container');
             window.addEventListener('scroll', () => {
