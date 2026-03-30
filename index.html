@@ -96,10 +96,8 @@
                     </text>
                 </svg>
                 <div class="relative z-10 transform group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                    <!-- Utilisation du sprite sur-mesure pour la vanille -->
-                    <svg class="icon w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
-                        <use xlink:href="assets/icons/_sprite.svg#vanille"></use>
-                    </svg>
+                    <!-- Utilisation optimisée avec <img> pour préserver les couleurs d'origine -->
+                    <img src="assets/icons/vanille.svg" alt="Icône vanille" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
                 </div>
             </div>
         </div>
