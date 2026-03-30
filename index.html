@@ -60,7 +60,7 @@
 
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="p-2 transition-colors">
-                        <svg id="menu-icon" class="w-7 h-7"><use href="assets/icons/_sprite.svg#menu"></use></svg>
+                        <svg id="menu-icon" class="w-7 h-7 text-[#1A4331] fill-current"><use href="assets/icons/_sprite.svg#menu"></use></svg>
                     </button>
                 </div>
             </div>
@@ -106,6 +106,7 @@
                 </a>
             </div>
 
+            <!-- Macaron animé (visible sur tous les écrans, adapté en taille) -->
             <div class="flex absolute bottom-4 right-4 w-24 h-24 md:bottom-8 md:right-8 md:w-32 md:h-32 lg:bottom-16 lg:right-16 lg:w-40 lg:h-40 items-center justify-center group cursor-default z-20">
                 <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#E3E779] fill-current opacity-90 animate-spin-slow">
                     <defs>
@@ -117,8 +118,8 @@
                         </textPath>
                     </text>
                 </svg>
-                <div class="relative z-10 text-[#E3E779] transform group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 fill-current"><use href="assets/icons/_sprite.svg#vanille"></use></svg>
+                <div class="relative z-10 transform group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                    <svg class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-[#E3E779] fill-current stroke-current" stroke-width="0"><use href="assets/icons/_sprite.svg#vanille"></use></svg>
                 </div>
             </div>
         </div>
