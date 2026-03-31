@@ -20,9 +20,7 @@
         }
     </script>
     
-    <!-- Ajout de Lucide Icons pour les icônes standards -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Ajout de Lottie pour l'animation JSON du menu -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 <body class="min-h-screen bg-[#F1F4C6] text-[#1A4331] font-sans selection:bg-[#1A4331] selection:text-[#E3E779]">
@@ -56,8 +54,9 @@
                     </a>
                 </nav>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="p-2 transition-colors text-[#1A4331] focus:outline-none">
-                        <div id="lottie-menu" class="w-8 h-8"></div>
+                    <button id="mobile-menu-btn" class="flex items-center gap-2 p-2 transition-colors text-[#1A4331] focus:outline-none">
+                        <span class="text-xs font-bold tracking-widest uppercase">Menu</span>
+                        <div id="lottie-menu" class="w-10 h-10"></div>
                     </button>
                 </div>
             </div>
