@@ -20,7 +20,10 @@
         }
     </script>
     
+    <!-- Ajout de Lucide Icons pour les icônes standards -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Ajout de Lottie pour l'animation JSON du menu -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 </head>
 <body class="min-h-screen bg-[#F1F4C6] text-[#1A4331] font-sans selection:bg-[#1A4331] selection:text-[#E3E779]">
 
@@ -53,9 +56,8 @@
                     </a>
                 </nav>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="p-2 transition-colors text-[#1A4331]">
-                        <i data-lucide="menu" id="icon-menu" class="w-7 h-7 block"></i>
-                        <i data-lucide="x" id="icon-close" class="w-7 h-7 hidden"></i>
+                    <button id="mobile-menu-btn" class="p-2 transition-colors text-[#1A4331] focus:outline-none">
+                        <div id="lottie-menu" class="w-8 h-8"></div>
                     </button>
                 </div>
             </div>
@@ -274,26 +276,28 @@
 
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
             let isOpen = false;
+
+            const lottieMenu = lottie.loadAnimation({
+                container: document.getElementById('lottie-menu'),
+                renderer: 'svg',
+                loop: false,
+                autoplay: false,
+                path: 'assets/json/gousse-de-vanille.json'
+            });
 
             btn.addEventListener('click', () => {
                 isOpen = !isOpen;
                 if (isOpen) {
                     menu.classList.remove('max-h-0', 'opacity-0');
                     menu.classList.add('max-h-[400px]', 'opacity-100');
-                    iconMenu.classList.add('hidden');
-                    iconMenu.classList.remove('block');
-                    iconClose.classList.add('block');
-                    iconClose.classList.remove('hidden');
+                    lottieMenu.setDirection(1);
+                    lottieMenu.play();
                 } else {
                     menu.classList.remove('max-h-[400px]', 'opacity-100');
                     menu.classList.add('max-h-0', 'opacity-0');
-                    iconMenu.classList.add('block');
-                    iconMenu.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
-                    iconClose.classList.remove('block');
+                    lottieMenu.setDirection(-1);
+                    lottieMenu.play();
                 }
             });
 
