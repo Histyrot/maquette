@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taty-Vanille | Le goût authentique de Madagascar</title>
-    
     <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,15 +17,26 @@
             }
         }
     </script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <style>
+        #main-header {
+            will-change: transform;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+        }
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+        #header-container {
+            transition: padding 0.3s ease-in-out;
+        }
+    </style>
 </head>
 <body class="min-h-screen bg-[#F1F4C6] text-[#1A4331] font-sans selection:bg-[#1A4331] selection:text-[#E3E779]">
 
-    <header id="main-header" class="sticky top-0 z-50 bg-[#F1F4C6]/90 backdrop-blur-md border-b border-[#D5DB9E] transition-all duration-300">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 bg-[#F1F4C6]/90 backdrop-blur-sm border-b border-[#D5DB9E]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="header-container" class="flex justify-between items-center h-20 transition-all duration-300">
+            <div id="header-container" class="flex justify-between items-center py-5">
                 <div class="flex-shrink-0 flex items-center cursor-pointer">
                     <a href="index.html" class="font-serif text-2xl font-bold tracking-wider text-[#1A4331]">
                         TATY<span class="text-[#2D5D46]">-</span>VANILLE
@@ -35,29 +44,31 @@
                 </div>
                 <div class="flex items-center">
                     <button id="mobile-menu-btn" class="flex items-center gap-2 p-2 transition-colors text-[#1A4331] focus:outline-none">
-                        <span class="text-xs font-bold tracking-widest uppercase">Menu</span>
+                        <span class="text-xs font-bold tracking-widest uppercase hidden md:block">Menu</span>
                         <div id="lottie-menu" class="w-10 h-10"></div>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="bg-[#F1F4C6] overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+        <div id="mobile-menu" class="bg-[#F1F4C6] overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 absolute w-full z-40 shadow-lg border-b border-[#D5DB9E]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="pt-2 pb-4 space-y-1 border-t border-[#D5DB9E]">
-                    <a href="index.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Accueil</a>
-                    <a href="origine.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Origine</a>
-                    <a href="produits.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Nos produits</a>
-                    <a href="qui_sommes_nous.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Qui sommes-nous ?</a>
-                    <a href="ou_nous_trouver.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Où nous trouver ?</a>
-                    <a href="contact.html" class="block px-3 py-2 text-base font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Contact</a>
+                <div class="pt-6 pb-8 space-y-2">
+                    <a href="index.html" class="block px-3 py-3 text-lg font-medium bg-[#D5DB9E] text-[#1A4331] rounded-md">Accueil</a>
+                    <a href="origine.html" class="block px-3 py-3 text-lg font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Origine</a>
+                    <a href="produits.html" class="block px-3 py-3 text-lg font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Nos produits</a>
+                    <a href="qui_sommes_nous.html" class="block px-3 py-3 text-lg font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Qui sommes-nous ?</a>
+                    <a href="ou_nous_trouver.html" class="block px-3 py-3 text-lg font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Où nous trouver ?</a>
+                    <a href="contact.html" class="block px-3 py-3 text-lg font-medium hover:bg-[#D5DB9E] hover:text-[#1A4331] hover:translate-x-2 rounded-md transition-all duration-300">Contact</a>
                 </div>
             </div>
         </div>
     </header>
 
+    <div class="h-20 md:h-24"></div>
+
     <section class="relative overflow-hidden bg-[#1A4331] text-[#F1F4C6]">
         <div class="absolute inset-0">
-            <img src="assets/img/hero.webp" alt="Gousses de vanille" class="w-full h-full object-cover opacity-30">
+            <img src="assets/img/hero.webp" alt="Gousses de vanille" class="w-full h-full object-cover opacity-30" fetchpriority="high" decoding="async">
             <div class="absolute inset-0 bg-gradient-to-r from-[#1A4331] to-transparent mix-blend-multiply"></div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col justify-center min-h-[70vh] z-10">
@@ -77,7 +88,7 @@
                     </text>
                 </svg>
                 <div class="relative z-10 transform group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                    <img src="assets/icons/vanille.svg" alt="Icône vanille" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+                    <img src="assets/icons/vanille.svg" alt="Icône vanille" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" decoding="async">
                 </div>
             </div>
         </div>
@@ -92,8 +103,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
                     <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/traca.webp" alt="Traçabilité" class="w-full h-full object-cover"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/traca2.webp" alt="Traçabilité" class="w-full h-full object-cover"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/traca.webp" alt="Traçabilité" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/traca2.webp" alt="Traçabilité" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
                     </div>
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
@@ -103,8 +114,8 @@
                 </div>
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
                     <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/commerce.webp" alt="Commerce Équitable" class="w-full h-full object-cover"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/commerce2.webp" alt="Commerce Équitable" class="w-full h-full object-cover"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/commerce.webp" alt="Commerce Équitable" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/commerce2.webp" alt="Commerce Équitable" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
                     </div>
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
@@ -114,8 +125,8 @@
                 </div>
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
                     <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/qualite.webp" alt="Qualité Premium" class="w-full h-full object-cover"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/qualite2.webp" alt="Qualité Premium" class="w-full h-full object-cover"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/qualite.webp" alt="Qualité Premium" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                        <div class="w-1/2 h-full"><img src="assets/img/qualite2.webp" alt="Qualité Premium" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
                     </div>
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
@@ -141,7 +152,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:pb-16">
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E]">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit1.webp" alt="Grandes et grosses gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <img src="assets/img/produit1.webp" alt="Grandes et grosses gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -151,7 +162,7 @@
                 </div>
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E] lg:mt-8">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit2.webp" alt="Grandes gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <img src="assets/img/produit2.webp" alt="Grandes gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -161,7 +172,7 @@
                 </div>
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E] lg:mt-16">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit3.webp" alt="Petites gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <img src="assets/img/produit3.webp" alt="Petites gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -185,7 +196,7 @@
                     <span class="font-serif text-2xl font-bold tracking-wider mb-6 block text-[#E3E779]">TATY-VANILLE</span>
                     <p class="text-[#F1F4C6]/80 text-sm mb-6 leading-relaxed">Le goût authentique de la vanille de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.</p>
                     <div class="flex space-x-4">
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Instagram">
+                        <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Instagram">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
                         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Facebook">
@@ -220,12 +231,22 @@
                             <span>50, Rue de l'Orme<br>91460 MARCOUSSIS<br>France</span>
                         </li>
                         <li class="flex items-center">
-                            <i data-lucide="phone" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0"></i>
-                            <span>+33 7 83 47 29 83</span>
+                            <a href="tel:+33783472983" class="flex items-center hover:text-[#E3E779] transition-colors group">
+                                <i data-lucide="phone" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0 group-hover:scale-110 transition-transform"></i>
+                                <span>+33 7 83 47 29 83</span>
+                            </a>
                         </li>
                         <li class="flex items-center">
-                            <i data-lucide="mail" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0"></i>
-                            <a href="mailto:contact@taty-vanille.com" class="hover:text-[#E3E779] transition-colors">contact@taty-vanille.com</a>
+                            <a href="mailto:contact@taty-vanille.com" class="flex items-center hover:text-[#E3E779] transition-colors group">
+                                <i data-lucide="mail" class="w-5 h-5 mr-3 text-[#E3E779] flex-shrink-0 group-hover:scale-110 transition-transform"></i>
+                                <span>contact@taty-vanille.com</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-[#E3E779] transition-colors group">
+                                <img src="assets/icons/instagram.svg" alt="Instagram" class="w-5 h-5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform" loading="lazy" decoding="async">
+                                <span>@tatyvanille</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -240,9 +261,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
+            const header = document.getElementById('main-header');
+            const headerContainer = document.getElementById('header-container');
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             let isOpen = false;
+            let lastScrollY = window.scrollY;
 
             const lottieMenu = lottie.loadAnimation({
                 container: document.getElementById('lottie-menu'),
@@ -267,19 +291,29 @@
                 }
             });
 
-            const header = document.getElementById('main-header');
-            const headerContainer = document.getElementById('header-container');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
+                const currentScrollY = window.scrollY;
+
+                if (isOpen) return;
+
+                if (currentScrollY > lastScrollY && currentScrollY > 150) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+
+                if (currentScrollY > 50) {
                     header.classList.add('shadow-md');
-                    headerContainer.classList.remove('h-20');
-                    headerContainer.classList.add('h-16');
+                    headerContainer.classList.add('py-3');
+                    headerContainer.classList.remove('py-5');
                 } else {
                     header.classList.remove('shadow-md');
-                    headerContainer.classList.remove('h-16');
-                    headerContainer.classList.add('h-20');
+                    headerContainer.classList.add('py-5');
+                    headerContainer.classList.remove('py-3');
                 }
-            });
+
+                lastScrollY = currentScrollY;
+            }, { passive: true });
         });
     </script>
 </body>
