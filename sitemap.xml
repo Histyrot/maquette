@@ -56,8 +56,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <!-- L'URL est encodée (%C3%A9) pour correspondre au "é" de ton fichier -->
-    <loc>https://www.taty-vanille.com/politique_de_confidentialit%C3%A9.html</loc>
+    <loc>https://www.taty-vanille.com/politique_de_confidentialite.html</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

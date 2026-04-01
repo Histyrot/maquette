@@ -16,7 +16,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="TatyVanille">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
@@ -45,32 +44,9 @@
       ]
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                    }
-                }
-            }
-        }
-    </script>
     <script src="https://unpkg.com/lucide@latest" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
-    <style>
-        #main-header {
-            will-change: transform;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-        }
-        .header-hidden {
-            transform: translateY(-100%);
-        }
-        #header-container {
-            transition: padding 0.3s ease-in-out;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="min-h-screen bg-[#F1F4C6] text-[#1A4331] font-sans selection:bg-[#1A4331] selection:text-[#E3E779]">
 
@@ -202,7 +178,7 @@
                     <h4 class="text-[#E3E779] font-bold mb-6 uppercase tracking-wider text-sm">Informations</h4>
                     <ul class="space-y-3 text-sm text-[#F1F4C6]/80">
                         <li><a href="cgv.html" class="hover:text-[#E3E779] transition-colors">Conditions Générales de Vente</a></li>
-                        <li><a href="politique_de_confidentialité.html" class="hover:text-[#E3E779] transition-colors">Politique de confidentialité</a></li>
+                        <li><a href="politique_de_confidentialite.html" class="hover:text-[#E3E779] transition-colors">Politique de confidentialité</a></li>
                         <li><a href="mentions_legales.html" class="hover:text-[#E3E779] transition-colors">Mentions légales</a></li>
                     </ul>
                 </div>
@@ -240,62 +216,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-
-            const header = document.getElementById('main-header');
-            const headerContainer = document.getElementById('header-container');
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            let isOpen = false;
-            let lastScrollY = window.scrollY;
-
-            const lottieMenu = lottie.loadAnimation({
-                container: document.getElementById('lottie-menu'),
-                renderer: 'svg',
-                loop: false,
-                autoplay: false,
-                path: 'assets/json/gousse-de-vanille.json'
-            });
-
-            btn.addEventListener('click', () => {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    menu.classList.remove('max-h-0', 'opacity-0');
-                    menu.classList.add('max-h-[400px]', 'opacity-100');
-                    lottieMenu.setDirection(1);
-                    lottieMenu.play();
-                } else {
-                    menu.classList.remove('max-h-[400px]', 'opacity-100');
-                    menu.classList.add('max-h-0', 'opacity-0');
-                    lottieMenu.setDirection(-1);
-                    lottieMenu.play();
-                }
-            });
-
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
-                if (isOpen) return;
-
-                if (currentScrollY > lastScrollY && currentScrollY > 150) {
-                    header.classList.add('header-hidden');
-                } else {
-                    header.classList.remove('header-hidden');
-                }
-
-                if (currentScrollY > 50) {
-                    header.classList.add('shadow-md');
-                    headerContainer.classList.add('py-3');
-                    headerContainer.classList.remove('py-5');
-                } else {
-                    header.classList.remove('shadow-md');
-                    headerContainer.classList.add('py-5');
-                    headerContainer.classList.remove('py-3');
-                }
-                lastScrollY = currentScrollY;
-            }, { passive: true });
-        });
-    </script>
+    <script src="assets/js/site.min.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@source "../*.html";
+
+@theme {
+    --animate-spin-slow: spin 12s linear infinite;
+}
+
+#main-header {
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.header-hidden {
+    transform: translateY(-100%);
+}
+
+#header-container {
+    transition: padding 0.3s ease-in-out;
+}
+
+/* Fade-in des images (évite l’apparition “en bloc”) */
+img.img-fade {
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
+}
+
+img.img-fade.img-fade--ready {
+    opacity: 1;
+}
