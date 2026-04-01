@@ -4,7 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos produits | Taty-Vanille</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <meta name="description" content="Découvrez notre sélection de gousses de vanille Bourbon de Madagascar, nos baies roses et notre poivre sauvage. Qualité premium et affinage traditionnel.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.taty-vanille.com/produits.html">
+    <meta property="og:title" content="Nos produits | Taty-Vanille">
+    <meta property="og:description" content="Découvrez notre sélection de gousses de vanille Bourbon de Madagascar, nos baies roses et notre poivre sauvage. Qualité premium et affinage traditionnel.">
+    <meta property="og:image" content="https://www.taty-vanille.com/assets/img/hero.webp">
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="TatyVanille">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Taty-Vanille",
+      "url": "https://www.taty-vanille.com",
+      "logo": "https://www.taty-vanille.com/assets/favicon/favicon-96x96.png",
+      "description": "Le goût authentique de la vanille Bourbon de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "50, Rue de l'Orme",
+        "addressLocality": "MARCOUSSIS",
+        "postalCode": "91460",
+        "addressCountry": "FR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33-7-83-47-29-83",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.instagram.com/tatyvanille/?hl=fr"
+      ]
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,8 +57,8 @@
             }
         }
     </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
     <style>
         #main-header {
             will-change: transform;
@@ -44,7 +84,7 @@
                 </div>
                 <div class="flex items-center">
                     <button id="mobile-menu-btn" class="flex items-center gap-2 p-2 transition-colors text-[#1A4331] focus:outline-none">
-                        <span class="text-xs font-bold tracking-widest uppercase hidden md:block">Menu</span>
+                        <span class="text-xs font-bold tracking-widest uppercase">Menu</span>
                         <div id="lottie-menu" class="w-10 h-10"></div>
                     </button>
                 </div>
@@ -68,7 +108,7 @@
 
     <section class="relative overflow-hidden bg-[#1A4331] text-[#F1F4C6] h-[40vh] min-h-[300px]">
         <div class="absolute inset-0">
-            <img src="assets/img/hero.webp" alt="Gousses de vanille affinées" class="w-full h-full object-cover opacity-30" fetchpriority="high" decoding="async">
+            <img src="assets/img/hero.webp" alt="Gousses de vanille affinées" width="1920" height="1080" class="w-full h-full object-cover opacity-30" fetchpriority="high" decoding="async">
             <div class="absolute inset-0 bg-[#1A4331]/60 mix-blend-multiply"></div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-center text-center z-10">
@@ -88,15 +128,8 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:pb-16">
                     <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#D5DB9E] flex flex-col h-full hover:-translate-y-2">
-                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer">
-                            <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Grandes et grosses gousses" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Détail texture gousse" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer bg-[#f4f4f4]">
+                            <img src="assets/img/vanille1.webp" alt="Grandes et grosses gousses" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-500 z-10 pointer-events-none"></div>
                             <div class="absolute top-4 right-4 bg-[#E3E779] text-[#1A4331] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider z-20 shadow-md">Premium</div>
                         </div>
@@ -107,15 +140,8 @@
                     </div>
 
                     <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#D5DB9E] flex flex-col h-full hover:-translate-y-2 lg:mt-8">
-                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer">
-                            <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Gousses classiques" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Fleur d'orchidée vanille" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer bg-[#f4f4f4]">
+                            <img src="assets/img/vanille2.webp" alt="Gousses classiques" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-500 z-10 pointer-events-none"></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow relative bg-white z-20">
@@ -125,15 +151,8 @@
                     </div>
 
                     <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#D5DB9E] flex flex-col h-full hover:-translate-y-2 lg:mt-16">
-                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer">
-                            <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Petites gousses" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Vanille détails" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer bg-[#f4f4f4]">
+                            <img src="assets/img/vanille3.webp" alt="Petites gousses" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-500 z-10 pointer-events-none"></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow relative bg-white z-20">
@@ -152,38 +171,24 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:pb-16">
                     <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#D5DB9E] flex flex-col h-full hover:-translate-y-2">
-                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer">
-                            <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Baies Roses" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Baies Roses détail" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer bg-[#f4f4f4]">
+                            <img src="assets/img/curcuma.webp" alt="curcuma" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-500 z-10 pointer-events-none"></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow relative bg-white z-20">
-                            <h3 class="text-xl font-bold mb-3 font-serif group-hover:text-[#2D5D46] transition-colors text-[#1A4331]">Baies Roses de Madagascar</h3>
-                            <p class="text-[#1A4331]/80 leading-relaxed flex-grow">Surnommées "l'or rose", ces baies sauvages cueillies à la main offrent des notes poivrées, sucrées et anisées.</p>
+                            <h3 class="text-xl font-bold mb-3 font-serif group-hover:text-[#2D5D46] transition-colors text-[#1A4331]">Curcuma</h3>
+                            <p class="text-[#1A4331]/80 leading-relaxed flex-grow">De Madagascar, possède des vertus anti-inflammatoires et anti-oxydantes, et son action bénéfique sur les troubles digestifs.</p>
                         </div>
                     </div>
 
                     <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#D5DB9E] flex flex-col h-full hover:-translate-y-2 lg:mt-8">
-                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer">
-                            <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Poivre Noir Sauvage" class="w-full h-full object-cover grayscale" style="filter: sepia(30%) hue-rotate(320deg) saturate(140%) brightness(80%);" loading="lazy" decoding="async">
-                                </div>
-                                <div class="w-1/2 h-full">
-                                    <img src="assets/img/qualite.webp" alt="Poivre Noir détail" class="w-full h-full object-cover grayscale" style="filter: sepia(30%) hue-rotate(320deg) saturate(140%) brightness(80%);" loading="lazy" decoding="async">
-                                </div>
-                            </div>
+                        <div class="aspect-[4/3] overflow-hidden relative cursor-pointer bg-[#f4f4f4]">
+                            <img src="assets/img/poivrenoir.webp" alt="Poivre Noir Sauvage" width="800" height="600" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700 ease-in-out" style="filter: sepia(30%) hue-rotate(320deg) saturate(140%) brightness(80%);" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-500 z-10 pointer-events-none"></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow relative bg-white z-20">
-                            <h3 class="text-xl font-bold mb-3 font-serif group-hover:text-[#2D5D46] transition-colors text-[#1A4331]">Poivre Noir Voatsiperifery</h3>
-                            <p class="text-[#1A4331]/80 leading-relaxed flex-grow">Un poivre sauvage endémique de Madagascar. Rare et exceptionnel, il dégage des arômes boisés, floraux et d'agrumes.</p>
+                            <h3 class="text-xl font-bold mb-3 font-serif group-hover:text-[#2D5D46] transition-colors text-[#1A4331]">Poivre Noir</h3>
+                            <p class="text-[#1A4331]/80 leading-relaxed flex-grow">De Madagascar, ce poivre est riche en pipérine possèdes des propriétés anti-oxydantes, il stimule la digestion et favorise l'absorption des nutriments.</p>
                         </div>
                     </div>
 
@@ -209,14 +214,6 @@
                 <div>
                     <span class="font-serif text-2xl font-bold tracking-wider mb-6 block text-[#E3E779]">TATY-VANILLE</span>
                     <p class="text-[#F1F4C6]/80 text-sm mb-6 leading-relaxed">Le goût authentique de la vanille de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Instagram">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Facebook">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
-                        </a>
-                    </div>
                 </div>
                 <div>
                     <h4 class="text-[#E3E779] font-bold mb-6 uppercase tracking-wider text-sm">Liens Rapides</h4>
@@ -258,7 +255,7 @@
                         </li>
                         <li class="flex items-center">
                             <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-[#E3E779] transition-colors group">
-                                <img src="assets/icons/instagram.svg" alt="Instagram" class="w-5 h-5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform" loading="lazy" decoding="async">
+                                <img src="assets/icons/instagram.svg" alt="Instagram" width="24" height="24" class="w-5 h-5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform" loading="lazy" decoding="async">
                                 <span>@tatyvanille</span>
                             </a>
                         </li>
@@ -307,7 +304,6 @@
 
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
-
                 if (isOpen) return;
 
                 if (currentScrollY > lastScrollY && currentScrollY > 150) {
@@ -325,7 +321,6 @@
                     headerContainer.classList.add('py-5');
                     headerContainer.classList.remove('py-3');
                 }
-
                 lastScrollY = currentScrollY;
             }, { passive: true });
         });

@@ -4,7 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taty-Vanille | Le goût authentique de Madagascar</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <meta name="description" content="Découvrez l'excellence de la vanille Bourbon de Madagascar. Taty-Vanille vous propose des gousses affinées avec soin, en circuit court et équitable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.taty-vanille.com/">
+    <meta property="og:title" content="Taty-Vanille | Le goût authentique de Madagascar">
+    <meta property="og:description" content="Découvrez l'excellence de la vanille Bourbon de Madagascar. Taty-Vanille vous propose des gousses affinées avec soin, en circuit court et équitable.">
+    <meta property="og:image" content="https://www.taty-vanille.com/assets/img/hero.webp">
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="TatyVanille">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Taty-Vanille",
+      "url": "https://www.taty-vanille.com",
+      "logo": "https://www.taty-vanille.com/assets/favicon/favicon-96x96.png",
+      "description": "Le goût authentique de la vanille Bourbon de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "50, Rue de l'Orme",
+        "addressLocality": "MARCOUSSIS",
+        "postalCode": "91460",
+        "addressCountry": "FR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33-7-83-47-29-83",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.instagram.com/tatyvanille/?hl=fr"
+      ]
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,8 +57,8 @@
             }
         }
     </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
     <style>
         #main-header {
             will-change: transform;
@@ -44,7 +84,7 @@
                 </div>
                 <div class="flex items-center">
                     <button id="mobile-menu-btn" class="flex items-center gap-2 p-2 transition-colors text-[#1A4331] focus:outline-none">
-                        <span class="text-xs font-bold tracking-widest uppercase hidden md:block">Menu</span>
+                        <span class="text-xs font-bold tracking-widest uppercase">Menu</span>
                         <div id="lottie-menu" class="w-10 h-10"></div>
                     </button>
                 </div>
@@ -68,7 +108,7 @@
 
     <section class="relative overflow-hidden bg-[#1A4331] text-[#F1F4C6]">
         <div class="absolute inset-0">
-            <img src="assets/img/hero.webp" alt="Gousses de vanille" class="w-full h-full object-cover opacity-30" fetchpriority="high" decoding="async">
+            <img src="assets/img/hero.webp" alt="Gousses de vanille" width="1920" height="1080" class="w-full h-full object-cover opacity-30" fetchpriority="high" decoding="async">
             <div class="absolute inset-0 bg-gradient-to-r from-[#1A4331] to-transparent mix-blend-multiply"></div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col justify-center min-h-[70vh] z-10">
@@ -81,14 +121,14 @@
             </div>
             
             <div class="flex absolute top-4 right-4 md:top-auto md:bottom-8 md:right-8 lg:bottom-16 lg:right-16 w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 items-center justify-center group cursor-default z-20">
-                <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-[#E3E779] fill-current opacity-90 animate-spin-slow">
+                <svg viewBox="0 0 100 100" width="160" height="160" class="absolute inset-0 w-full h-full text-[#E3E779] fill-current opacity-90 animate-spin-slow">
                     <defs><path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/></defs>
                     <text font-size="13" font-weight="bold" letter-spacing="2" class="uppercase">
                         <textPath href="#circlePath" startOffset="50%" text-anchor="middle"> - 100% - • Madagascar •</textPath>
                     </text>
                 </svg>
                 <div class="relative z-10 transform group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                    <img src="assets/icons/vanille.svg" alt="Icône vanille" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" decoding="async">
+                    <img src="assets/icons/vanille.svg" alt="Icône vanille" width="48" height="48" class="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" decoding="async">
                 </div>
             </div>
         </div>
@@ -102,10 +142,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
-                    <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/traca.webp" alt="Traçabilité" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/traca2.webp" alt="Traçabilité" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                    </div>
+                    <img src="assets/img/traca.webp" alt="Traçabilité" width="600" height="900" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
                         <h3 class="text-3xl font-bold text-[#E3E779] mb-2 font-serif">La traçabilité</h3>
@@ -113,10 +150,7 @@
                     </div>
                 </div>
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
-                    <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/commerce.webp" alt="Commerce Équitable" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/commerce2.webp" alt="Commerce Équitable" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                    </div>
+                    <img src="assets/img/commerce2.webp" alt="Commerce Équitable" width="600" height="900" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
                         <h3 class="text-3xl font-bold text-[#E3E779] mb-2 font-serif leading-tight">Le commerce équitable</h3>
@@ -124,10 +158,7 @@
                     </div>
                 </div>
                 <div class="group relative h-[450px] overflow-hidden cursor-pointer shadow-md rounded-sm">
-                    <div class="absolute top-0 left-0 h-full w-[200%] flex transition-transform duration-700 ease-in-out group-hover:-translate-x-1/2">
-                        <div class="w-1/2 h-full"><img src="assets/img/qualite.webp" alt="Qualité Premium" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                        <div class="w-1/2 h-full"><img src="assets/img/qualite2.webp" alt="Qualité Premium" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-                    </div>
+                    <img src="assets/img/qualite.webp" alt="Qualité Premium" width="600" height="900" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10"></div>
                     <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-[#1A4331]/80 py-10 px-8 z-20 backdrop-blur-sm transition-colors duration-500 group-hover:bg-[#1A4331]/90">
                         <h3 class="text-3xl font-bold text-[#E3E779] mb-2 font-serif leading-tight">La qualité premium</h3>
@@ -152,7 +183,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:pb-16">
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E]">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit1.webp" alt="Grandes et grosses gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
+                        <img src="assets/img/vanille1.webp" alt="Grandes et grosses gousses" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -162,7 +193,7 @@
                 </div>
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E] lg:mt-8">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit2.webp" alt="Grandes gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
+                        <img src="assets/img/vanille2.webp" alt="Grandes gousses" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -172,7 +203,7 @@
                 </div>
                 <div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#D5DB9E] lg:mt-16">
                     <div class="aspect-[4/3] overflow-hidden relative bg-[#f4f4f4]">
-                        <img src="assets/img/produit3.webp" alt="Petites gousses" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
+                        <img src="assets/img/vanille3.webp" alt="Petites gousses" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-[#1A4331]/0 group-hover:bg-[#1A4331]/10 transition-colors duration-300"></div>
                     </div>
                     <div class="p-6">
@@ -195,14 +226,6 @@
                 <div>
                     <span class="font-serif text-2xl font-bold tracking-wider mb-6 block text-[#E3E779]">TATY-VANILLE</span>
                     <p class="text-[#F1F4C6]/80 text-sm mb-6 leading-relaxed">Le goût authentique de la vanille de Madagascar. Qualité premium, commerce équitable et traçabilité garantie.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Instagram">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-[#E3E779] hover:opacity-80 transition-opacity" title="Suivez-nous sur Facebook">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
-                        </a>
-                    </div>
                 </div>
                 <div>
                     <h4 class="text-[#E3E779] font-bold mb-6 uppercase tracking-wider text-sm">Liens Rapides</h4>
@@ -244,7 +267,7 @@
                         </li>
                         <li class="flex items-center">
                             <a href="https://www.instagram.com/tatyvanille/?hl=fr" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-[#E3E779] transition-colors group">
-                                <img src="assets/icons/instagram.svg" alt="Instagram" class="w-5 h-5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform" loading="lazy" decoding="async">
+                                <img src="assets/icons/instagram.svg" alt="Instagram" width="24" height="24" class="w-5 h-5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform" loading="lazy" decoding="async">
                                 <span>@tatyvanille</span>
                             </a>
                         </li>
@@ -293,7 +316,6 @@
 
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
-
                 if (isOpen) return;
 
                 if (currentScrollY > lastScrollY && currentScrollY > 150) {
@@ -311,7 +333,6 @@
                     headerContainer.classList.add('py-5');
                     headerContainer.classList.remove('py-3');
                 }
-
                 lastScrollY = currentScrollY;
             }, { passive: true });
         });
