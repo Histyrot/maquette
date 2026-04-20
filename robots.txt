@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /assets/json/
-
-Sitemap: https://www.taty-vanille.com/sitemap.xml
