@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — Boutique Corse</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --bg: #fbfaf6;
+    --surface: #ffffff;
+    --bordeaux: #6b1f2a;
+    --bordeaux-clair: #8a3441;
+    --or: #b89642;
+    --noir: #2a1a1c;
+    --line: #ebe6dc;
+    --muted: #7a6e6a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--noir); line-height: 1.6; }
+  h1, h2, h3 { font-family: 'EB Garamond', serif; font-weight: 500; }
+
+  /* HERO statique image fixe */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px;
+    background: var(--bg);
+  }
+  .brand-mark { display: flex; align-items: center; gap: 12px; color: var(--bordeaux); margin-bottom: 32px; flex-wrap: wrap; }
+  .brand-mark .line { flex: 0 0 40px; height: 1px; background: var(--bordeaux); }
+  .brand-mark .txt { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; }
+  .brand-mark-flag {
+    margin-left: 8px;
+    padding: 3px 5px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    line-height: 0;
+  }
+  .brand-mark-flag img { display: block; height: 22px; width: auto; }
+  .hero h1 { font-size: clamp(48px, 6vw, 80px); line-height: 1.05; margin-bottom: 24px; }
+  .hero h1 em { color: var(--bordeaux); font-style: italic; }
+  .hero p { color: var(--muted); font-size: 17px; max-width: 480px; margin-bottom: 32px; }
+  .hero-img { background: url('../assets/charcuterie-1.jpg') center/cover; min-height: 400px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .price-tag { padding: 12px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; font-size: 13px; }
+  .price-tag strong { color: var(--bordeaux); font-family: 'EB Garamond', serif; font-size: 20px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px;
+    background: var(--bordeaux); color: white; text-decoration: none;
+    font-weight: 500; letter-spacing: 0.05em; font-size: 14px;
+    transition: background .2s; border: none; cursor: pointer; font-family: inherit;
+  }
+  .btn:hover { background: var(--noir); }
+  .btn-outline { background: transparent; color: var(--bordeaux); border: 1px solid var(--bordeaux); }
+  .btn-outline:hover { background: var(--bordeaux); color: white; }
+
+  /* Sections */
+  section { padding: 120px 80px; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .label { color: var(--bordeaux); letter-spacing: 0.3em; text-transform: uppercase; font-size: 11px; font-weight: 600; margin-bottom: 12px; }
+  .h-title { font-size: clamp(36px, 5vw, 56px); margin-bottom: 16px; line-height: 1.1; }
+  .h-title em { color: var(--bordeaux); font-style: italic; }
+  .h-sub { color: var(--muted); font-size: 17px; max-width: 600px; }
+  .head-row { display: flex; justify-content: space-between; align-items: end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+
+  /* Produits boutique */
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .product { background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; transition: border-color .2s; }
+  .product:hover { border-color: var(--bordeaux); }
+  .product-img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+  .product-img.p1 { background-image: url('../assets/charcuterie-1.jpg'); }
+  .product-img.p2 { background-image: url('../assets/charcuterie-2.jpg'); }
+  .product-img.p3 { background-image: url('../assets/fromage.jpg'); }
+  .product-body { padding: 24px; }
+  .product-cat { color: var(--bordeaux); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .product h3 { font-size: 24px; margin-bottom: 8px; }
+  .product p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+  .product .price { color: var(--bordeaux); font-family: 'EB Garamond', serif; font-size: 24px; font-weight: 600; }
+
+  /* Plateaux livraison */
+  .plats-section { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
+  .plat { padding: 56px 40px; text-align: center; border-right: 1px solid var(--line); position: relative; }
+  .plat:last-child { border-right: none; }
+  .plat .lbl { color: var(--bordeaux); letter-spacing: 0.3em; text-transform: uppercase; font-size: 11px; font-weight: 600; }
+  .plat .poids { font-family: 'EB Garamond', serif; font-size: 80px; color: var(--noir); font-weight: 500; line-height: 1; margin: 24px 0 8px; }
+  .plat .prix { font-family: 'EB Garamond', serif; font-size: 36px; color: var(--bordeaux); }
+  .plat .prix .euro { font-size: 24px; }
+  .plat .desc { color: var(--muted); font-size: 14px; margin-top: 16px; }
+  .plat .feat { margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--line); list-style: none; text-align: left; display: inline-block; }
+  .plat .feat li { font-size: 13px; color: var(--noir); margin: 6px 0; padding-left: 16px; position: relative; }
+  .plat .feat li::before { content: '✓'; position: absolute; left: 0; color: var(--bordeaux); }
+
+  /* Services */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .svc { padding: 32px; border: 1px solid var(--line); background: var(--surface); }
+  .svc .ico { font-size: 28px; color: var(--bordeaux); margin-bottom: 16px; }
+  .svc h3 { font-size: 22px; margin-bottom: 8px; }
+  .svc p { color: var(--muted); font-size: 14px; }
+
+  /* Marchés */
+  .marches-section { background: var(--bordeaux); color: white; }
+  .marches-section .label { color: var(--or); }
+  .marches-grid { display: flex; gap: 64px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .marche-item { text-align: center; padding: 24px; }
+  .marche-item .ville { font-family: 'EB Garamond', serif; font-size: 56px; color: white; }
+  .marche-item .meta { color: var(--or); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 8px; }
+
+  /* Contact */
+  .contact { background: var(--bg); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: start; }
+  .contact-info { background: var(--surface); padding: 48px; border: 1px solid var(--line); }
+  .contact-info h3 { font-size: 32px; margin-bottom: 16px; color: var(--bordeaux); }
+  .contact-info > p { color: var(--muted); margin-bottom: 32px; }
+  .info-line { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .info-line:last-child { border-bottom: none; }
+  .info-line .l { color: var(--bordeaux); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; font-weight: 600; }
+  .info-line .v { font-family: 'EB Garamond', serif; font-size: 20px; color: var(--noir); }
+
+  form { background: var(--surface); padding: 48px; border: 1px solid var(--line); display: grid; gap: 18px; }
+  form label { font-size: 11px; color: var(--bordeaux); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; display: block; }
+  form input, form textarea, form select {
+    width: 100%; padding: 14px; border: 1px solid var(--line); background: white;
+    font-family: inherit; font-size: 15px;
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--bordeaux); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  footer { padding: 40px 80px; background: var(--noir); color: rgba(255,255,255,0.6); text-align: center; font-size: 13px; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--bordeaux);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    section { padding: 80px 32px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 64px 32px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .plats-grid { grid-template-columns: 1fr; }
+    .plat { border-right: none; border-bottom: 1px solid var(--line); }
+    .contact-grid, .row2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="brand-mark">
+      <div class="line"></div>
+      <div class="txt">Maison Santi · Depuis 1963</div>
+      <span class="brand-mark-flag" aria-label="Drapeau de la Corse"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" alt=""></span>
+    </div>
+    <h1>La <em>boutique</em> corse,<br>livrée chez vous.</h1>
+    <p>Charcuterie, fromages et plateaux artisanaux. Sélection rigoureuse, livraison à domicile, vente sous vide partout en France.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#plats">Voir les plateaux</a>
+      <a class="btn btn-outline" href="#contact">Nous contacter</a>
+    </div>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <div class="label">— Notre sélection</div>
+        <h2 class="h-title">Produits <em>signature</em></h2>
+      </div>
+      <p class="h-sub">Une sélection rigoureuse de charcuterie séchée et fromages affinés, au cœur de la tradition corse.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product">
+        <div class="product-img p1"></div>
+        <div class="product-body">
+          <div class="product-cat">Charcuterie</div>
+          <h3>Coppa & Lonzu</h3>
+          <p>Séchage à l'ancienne, qualité supérieure, vendu au kilo.</p>
+          <div class="price">à partir de 55€/kg</div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img p2"></div>
+        <div class="product-body">
+          <div class="product-cat">Charcuterie</div>
+          <h3>Saucisson sec corse</h3>
+          <p>Saucisson artisanal, séchage long, goût authentique.</p>
+          <div class="price">à partir de 24€</div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img p3"></div>
+        <div class="product-body">
+          <div class="product-cat">Fromages</div>
+          <h3>Fromages affinés</h3>
+          <p>Brocciu, casgiu, fromages au lait cru de l'île.</p>
+          <div class="price">à partir de 18€</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plats-section" id="plats">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <div class="label">— Plateaux livraison</div>
+        <h2 class="h-title">Trois <em>formats</em></h2>
+      </div>
+      <p class="h-sub">Plateaux composés et livrés à domicile. Produits sous vide également disponibles à la commande.</p>
+    </div>
+    <div class="plats-grid">
+      <div class="plat">
+        <div class="lbl">Apéro · 2-3 personnes</div>
+        <div class="poids">900g</div>
+        <div class="prix">29<span class="euro">€</span></div>
+        <div class="desc">Idéal pour un apéritif gourmand.</div>
+        <ul class="feat">
+          <li>Charcuterie corse variée</li>
+          <li>Sélection fromages</li>
+          <li>Présentation soignée</li>
+        </ul>
+      </div>
+      <div class="plat">
+        <div class="lbl">Soirée · 4-6 personnes</div>
+        <div class="poids">1,4kg</div>
+        <div class="prix">39<span class="euro">€</span></div>
+        <div class="desc">Pour vos soirées entre amis.</div>
+        <ul class="feat">
+          <li>Plus généreux</li>
+          <li>Variété étendue</li>
+          <li>Présentation soignée</li>
+        </ul>
+      </div>
+      <div class="plat">
+        <div class="lbl">Réception · 6-8 personnes</div>
+        <div class="poids">1,9kg</div>
+        <div class="prix">59<span class="euro">€</span></div>
+        <div class="desc">Le format réception et famille.</div>
+        <ul class="feat">
+          <li>Format généreux</li>
+          <li>Sélection complète</li>
+          <li>Présentation soignée</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <div class="label">— Prestations</div>
+        <h2 class="h-title">Nos <em>services</em></h2>
+      </div>
+      <p class="h-sub">De l'animation événementielle à la livraison, nous nous adaptons à vos besoins.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc"><div class="ico">◆</div><h3>Mariages</h3><p>Animation découpe en direct devant vos invités.</p></div>
+      <div class="svc"><div class="ico">◆</div><h3>Réceptions</h3><p>Plateaux personnalisés sur mesure.</p></div>
+      <div class="svc"><div class="ico">◆</div><h3>Vente sous vide</h3><p>Expédition fraîche partout en France.</p></div>
+      <div class="svc"><div class="ico">◆</div><h3>Livraison</h3><p>Plateaux livrés à votre porte.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="marches-section">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="label">— Sur les marchés</div>
+      <h2 class="h-title" style="color:white">Venez nous <em style="color:var(--or)">rencontrer</em></h2>
+      <p class="h-sub" style="margin:0 auto;color:rgba(255,255,255,0.7)">Retrouvez-nous chaque semaine pour découvrir nos produits.</p>
+    </div>
+    <div class="marches-grid">
+      <div class="marche-item"><div class="ville">Dourdan</div><div class="meta">Marché</div></div>
+      <div class="marche-item"><div class="ville">Gouvieux</div><div class="meta">Marché</div></div>
+      <div class="marche-item"><div class="ville">Senlis</div><div class="meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <div class="label">— Contact</div>
+        <h2 class="h-title">Une <em>commande</em> ?</h2>
+      </div>
+      <p class="h-sub">Réponse sous 24h. Toujours avec le sourire.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>À votre écoute</h3>
+        <p>Pour toute commande, demande de devis ou question, n'hésitez pas à nous contacter.</p>
+        <div class="info-line"><div class="l">Téléphone</div><div class="v">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="l">Email</div><div class="v">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="l">Marchés</div><div class="v">Dourdan · Gouvieux · Senlis</div></div>
+        <div class="info-line"><div class="l">Délai de réponse</div><div class="v">Sous 24 heures</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div><label>Prénom</label><input type="text" required></div>
+          <div><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div><label>Email</label><input type="email" required></div>
+          <div><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div><label>Type de demande</label>
+          <select>
+            <option>Mariage / Animation découpe</option>
+            <option>Réception</option>
+            <option>Plateau livraison</option>
+            <option>Vente sous vide</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div><label>Votre message</label><textarea rows="4"></textarea></div>
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Maison Santi · Boutique corse en ligne · Livraison France entière</footer>
+
+</body>
+</html>

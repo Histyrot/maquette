@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi.</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root { --bg: #ffffff; --fg: #0a0a0a; --muted: #6b6b6b; --line: #e5e5e5; --accent: #000; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; padding: 32px; }
+  .hero-top { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 13px; color: var(--muted); padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .hero-top strong { color: var(--fg); font-weight: 500; }
+  .hero-top-flag {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    background: #fafafa;
+  }
+  .hero-top-flag img { display: block; height: 18px; width: auto; }
+  .hero-main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; padding: 80px 0; align-items: center; }
+  .hero-text h1 {
+    font-size: clamp(60px, 9vw, 156px);
+    font-weight: 500; letter-spacing: -0.04em; line-height: 0.92;
+    margin-bottom: 32px;
+  }
+  .hero-text h1 .light { font-weight: 300; color: var(--muted); }
+  .hero-text p { font-size: 18px; color: var(--muted); max-width: 440px; line-height: 1.5; margin-bottom: 32px; }
+  .hero-img { aspect-ratio: 4/5; background: url('../assets/charcuterie-1.jpg') center/cover; }
+  .hero-bottom { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--fg); color: var(--bg); text-decoration: none; font-size: 14px; font-weight: 500; transition: all .2s; border: 1px solid var(--fg); cursor: pointer; font-family: inherit; }
+  .btn:hover { background: transparent; color: var(--fg); }
+  .btn-ghost { background: transparent; color: var(--fg); }
+  .btn-ghost:hover { background: var(--fg); color: var(--bg); }
+
+  /* Generic section */
+  section { padding: 140px 32px; border-top: 1px solid var(--line); }
+  .label { font-size: 11px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
+  h2 { font-size: clamp(40px, 6vw, 88px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 64px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .about p { font-size: 19px; line-height: 1.6; margin-bottom: 24px; }
+  .about-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .meta-item .num { font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+  .meta-item .lbl { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* Services list */
+  .svc-list { border-top: 1px solid var(--line); }
+  .svc-row { display: grid; grid-template-columns: 60px 1fr 2fr 40px; gap: 32px; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--line); transition: padding .25s; }
+  .svc-row:hover { padding-left: 16px; padding-right: 16px; background: #fafafa; }
+  .svc-row .n { font-size: 14px; color: var(--muted); }
+  .svc-row h3 { font-size: 32px; font-weight: 500; letter-spacing: -0.02em; }
+  .svc-row p { color: var(--muted); }
+  .svc-row .a { text-align: right; font-size: 20px; }
+
+  /* Plateaux */
+  .plats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .plat { background: var(--bg); padding: 56px 40px; transition: background .25s; }
+  .plat:hover { background: #fafafa; }
+  .plat .lbl { font-size: 11px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+  .plat .poids { font-size: 88px; font-weight: 500; letter-spacing: -0.04em; margin: 24px 0 8px; line-height: 1; }
+  .plat .prix { font-size: 24px; }
+  .plat .desc { color: var(--muted); margin-top: 24px; font-size: 14px; }
+
+  /* Marchés */
+  .marches { display: flex; gap: 80px; flex-wrap: wrap; }
+  .ville { font-size: clamp(60px, 8vw, 120px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+
+  /* Contact */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; }
+  .contact-info p { color: var(--muted); margin-bottom: 32px; font-size: 18px; }
+  .info-line { padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+  .info-line:first-of-type { border-top: 1px solid var(--line); }
+  .info-line .l { color: var(--muted); font-size: 13px; }
+  .info-line .v { font-weight: 500; }
+
+  form { display: grid; gap: 0; }
+  .field { display: flex; flex-direction: column; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .field label { font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .field input, .field textarea, .field select {
+    background: transparent; border: none; padding: 4px 0; font-family: inherit; font-size: 18px; color: var(--fg);
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  form .btn { margin-top: 32px; justify-self: start; }
+
+  footer { padding: 32px; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 800px) {
+    .hero-main, .about, .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+    .plats { grid-template-columns: 1fr; }
+    .row2 { grid-template-columns: 1fr; }
+    .svc-row { grid-template-columns: 40px 1fr; }
+    .svc-row p, .svc-row .a { display: none; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="hero-top">
+    <div><strong>Santi.</strong> — Charcuterie & Fromages Corses</div>
+    <div>Est. 1963</div>
+    <div class="hero-top-flag" aria-label="Drapeau de la Corse">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" alt="">
+    </div>
+  </div>
+  <div class="hero-main">
+    <div class="hero-text">
+      <h1>Le goût.<br><span class="light">Rien d'autre.</span></h1>
+      <p>Maison Santi — produits artisanaux de Corse, plateaux sur mesure, animations événementielles.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="#contact">Nous contacter →</a>
+        <a class="btn btn-ghost" href="#plats">Voir les plateaux</a>
+      </div>
+    </div>
+    <div class="hero-img"></div>
+  </div>
+  <div class="hero-bottom">
+    <div>↓ Faites défiler</div>
+    <div>Dourdan · Gouvieux · Senlis</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="label">À propos</div>
+    <h2>Trois générations.<br>Une seule exigence : la qualité.</h2>
+    <div class="about">
+      <div>
+        <p>Santi accueille toujours avec le sourire — un sourire chaleureux, l'âme de l'île. Charcuterie séchée à l'ancienne, fromages affinés au lait cru, sélection rigoureuse.</p>
+        <p>Pour vos mariages, réceptions, livraisons à domicile ou commandes sous vide, nous mettons le même soin et la même générosité.</p>
+      </div>
+      <div>
+        <div class="about-meta">
+          <div class="meta-item"><div class="num">1963</div><div class="lbl">Tradition familiale</div></div>
+          <div class="meta-item"><div class="num">3</div><div class="lbl">Marchés hebdo</div></div>
+          <div class="meta-item"><div class="num">5</div><div class="lbl">Prestations</div></div>
+          <div class="meta-item"><div class="num">100%</div><div class="lbl">Artisanal</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="label">Prestations</div>
+    <h2>Nos services.</h2>
+    <div class="svc-list">
+      <div class="svc-row"><div class="n">01</div><h3>Mariages</h3><p>Animation découpe en direct.</p><div class="a">→</div></div>
+      <div class="svc-row"><div class="n">02</div><h3>Réceptions</h3><p>Plateaux personnalisés pour vos événements.</p><div class="a">→</div></div>
+      <div class="svc-row"><div class="n">03</div><h3>Vente sous vide</h3><p>Expédition partout en France.</p><div class="a">→</div></div>
+      <div class="svc-row"><div class="n">04</div><h3>Livraison</h3><p>À domicile, à la date souhaitée.</p><div class="a">→</div></div>
+      <div class="svc-row"><div class="n">05</div><h3>Marchés</h3><p>Dourdan, Gouvieux, Senlis.</p><div class="a">→</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="plats">
+  <div class="container">
+    <div class="label">Plateaux livraison</div>
+    <h2>Trois formats.</h2>
+    <div class="plats">
+      <div class="plat"><div class="lbl">Apéro · 2-3 pers.</div><div class="poids">900<span style="font-size:0.4em">g</span></div><div class="prix">29€</div><div class="desc">Sélection de charcuteries et fromages corses pour un apéritif gourmand.</div></div>
+      <div class="plat"><div class="lbl">Soirée · 4-6 pers.</div><div class="poids">1,4<span style="font-size:0.4em">kg</span></div><div class="prix">39€</div><div class="desc">Plus généreux, idéal pour une soirée entre amis.</div></div>
+      <div class="plat"><div class="lbl">Réception · 6-8 pers.</div><div class="poids">1,9<span style="font-size:0.4em">kg</span></div><div class="prix">59€</div><div class="desc">Le grand format pour vos réceptions et événements familiaux.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="label">Marchés</div>
+    <h2>Retrouvez-nous.</h2>
+    <div class="marches">
+      <div class="ville">Dourdan,</div>
+      <div class="ville">Gouvieux,</div>
+      <div class="ville">Senlis.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="label">Contact</div>
+    <h2>Écrivez-nous.</h2>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>Une commande, un mariage, une question ? Réponse sous 24h, toujours avec le sourire.</p>
+        <div class="info-line"><div class="l">Téléphone</div><div class="v">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="l">Email</div><div class="v">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="l">Marchés</div><div class="v">Dourdan / Gouvieux / Senlis</div></div>
+        <div class="info-line"><div class="l">Réponse</div><div class="v">Sous 24h</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div class="field"><label>Prénom</label><input type="text" required></div>
+          <div class="field"><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>Email</label><input type="email" required></div>
+          <div class="field"><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div class="field"><label>Type de demande</label>
+          <select><option>Mariage / Animation découpe</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div class="field"><label>Votre message</label><textarea rows="3"></textarea></div>
+        <button class="btn" type="submit">Envoyer →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Santi.</div>
+  <div>Charcuterie & Fromages Corses</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — Souvenir de Corse</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --paper: #f4ecd8;
+    --paper-dark: #e8dcc0;
+    --sepia: #6b4a30;
+    --rouge-postal: #b04030;
+    --bleu-tampon: #2a4a6b;
+    --noir: #2a1f15;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Playfair Display', serif; background: var(--paper); color: var(--noir); line-height: 1.7;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(107,74,48,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(176,64,48,0.05) 0%, transparent 40%);
+  }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+  .handwritten { font-family: 'Caveat', cursive; }
+  .typed { font-family: 'Special Elite', monospace; }
+
+  /* HERO carte postale */
+  .hero {
+    min-height: 100vh; padding: 60px 32px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .postcard {
+    background: white;
+    width: 100%; max-width: 1100px;
+    box-shadow: 0 30px 80px rgba(107,74,48,0.25), 0 0 0 1px rgba(107,74,48,0.1);
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative;
+    transform: rotate(-0.5deg);
+    border: 12px solid white;
+  }
+  .postcard::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(107,74,48,0.02) 2px, rgba(107,74,48,0.02) 4px);
+    pointer-events: none;
+  }
+  .pc-img { background: url('../assets/charcuterie-1.jpg') center/cover; min-height: 500px; position: relative; }
+  .pc-img-flag {
+    position: absolute;
+    bottom: 56px;
+    right: 16px;
+    z-index: 2;
+    width: 76px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px dashed var(--sepia);
+    transform: rotate(6deg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  .pc-img-flag img { display: block; width: 100%; height: auto; }
+  .pc-img::after {
+    content: 'BASTIA · CORSICA'; position: absolute; bottom: 16px; left: 16px;
+    color: white; font-family: 'Special Elite', monospace; font-size: 11px;
+    letter-spacing: 0.2em; background: rgba(0,0,0,0.6); padding: 6px 12px;
+  }
+  .pc-text { padding: 48px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+  .pc-stamp {
+    position: absolute; top: 24px; right: 24px;
+    width: 90px; height: 110px; border: 1px dashed var(--sepia);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(176,64,48,0.05); padding: 8px; text-align: center;
+  }
+  .pc-stamp .head { font-family: 'Playfair Display', serif; font-style: italic; font-size: 10px; color: var(--rouge-postal); border-bottom: 1px solid var(--rouge-postal); padding-bottom: 4px; margin-bottom: 6px; }
+  .pc-stamp .price { font-family: 'Special Elite', monospace; font-size: 22px; color: var(--rouge-postal); }
+  .pc-stamp .lbl { font-size: 9px; color: var(--sepia); margin-top: 4px; }
+
+  .pc-from { font-family: 'Special Elite', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--sepia); margin-bottom: 24px; text-transform: uppercase; }
+  .pc-text h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.05; margin-bottom: 8px; color: var(--noir); }
+  .pc-text h1 .script { font-family: 'Caveat', cursive; color: var(--rouge-postal); font-weight: 400; font-size: 1.2em; display: block; margin-top: 8px; }
+  .pc-text .greeting { font-family: 'Caveat', cursive; font-size: 28px; color: var(--sepia); margin-top: 24px; }
+  .pc-text .body { color: var(--sepia); margin: 16px 0 32px; font-size: 17px; }
+  .pc-sig { font-family: 'Caveat', cursive; font-size: 32px; color: var(--rouge-postal); }
+
+  .pc-stamp-circle {
+    position: absolute; top: 130px; right: 32px;
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid var(--bleu-tampon);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: var(--bleu-tampon); font-family: 'Special Elite', monospace; font-size: 9px;
+    transform: rotate(-12deg); opacity: 0.7;
+    line-height: 1.2;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px;
+    background: var(--rouge-postal); color: white; text-decoration: none;
+    font-family: 'Special Elite', monospace; font-size: 13px; letter-spacing: 0.1em;
+    border: none; cursor: pointer; transition: all .2s;
+  }
+  .btn:hover { background: var(--noir); }
+
+  /* Sections */
+  section { padding: 120px 32px; position: relative; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .label { color: var(--rouge-postal); font-family: 'Special Elite', monospace; letter-spacing: 0.3em; text-transform: uppercase; font-size: 12px; margin-bottom: 16px; text-align: center; }
+  .h-title { text-align: center; font-size: clamp(40px, 6vw, 64px); margin-bottom: 16px; line-height: 1.1; }
+  .h-title em { color: var(--rouge-postal); }
+  .h-script { text-align: center; font-family: 'Caveat', cursive; color: var(--sepia); font-size: 28px; margin-bottom: 48px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+  .about-photo {
+    aspect-ratio: 4/5; background: url('../assets/charcuterie-2.jpg') center/cover;
+    border: 14px solid white;
+    box-shadow: 0 20px 50px rgba(107,74,48,0.25);
+    transform: rotate(-3deg);
+    position: relative;
+  }
+  .about-photo::after {
+    content: 'Souvenir 1963'; position: absolute; bottom: -38px; left: 50%; transform: translateX(-50%) rotate(3deg);
+    font-family: 'Caveat', cursive; color: var(--sepia); font-size: 22px;
+  }
+  .about p { color: var(--sepia); font-size: 17px; margin-bottom: 16px; }
+  .about h2 { font-size: 48px; line-height: 1.05; margin-bottom: 20px; }
+  .about h2 em { color: var(--rouge-postal); }
+
+  /* Services - timbres */
+  .services { background: var(--paper-dark); position: relative; }
+  .services::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 12px; background: repeating-linear-gradient(90deg, transparent 0 16px, var(--paper) 16px 32px); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .stamp {
+    background: white; padding: 24px;
+    border: 2px dashed var(--sepia);
+    text-align: center;
+    position: relative;
+    transition: transform .3s;
+  }
+  .stamp:hover { transform: rotate(-2deg) scale(1.03); }
+  .stamp:nth-child(2):hover { transform: rotate(2deg) scale(1.03); }
+  .stamp .num { font-family: 'Special Elite', monospace; font-size: 11px; color: var(--rouge-postal); }
+  .stamp h3 { font-size: 24px; margin: 12px 0 8px; }
+  .stamp p { color: var(--sepia); font-size: 14px; }
+  .stamp .ico { font-size: 28px; color: var(--rouge-postal); margin-bottom: 8px; }
+
+  /* Plateaux */
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+  .plat {
+    background: white; padding: 40px 32px; text-align: center;
+    box-shadow: 0 12px 40px rgba(107,74,48,0.15);
+    border: 1px solid var(--paper-dark);
+    position: relative;
+    transition: transform .3s;
+  }
+  .plat:nth-child(1) { transform: rotate(-1.5deg); }
+  .plat:nth-child(2) { transform: rotate(1deg); }
+  .plat:nth-child(3) { transform: rotate(-0.5deg); }
+  .plat:hover { transform: rotate(0) translateY(-8px); }
+  .plat .ribbon {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--rouge-postal); color: white;
+    padding: 6px 18px; font-family: 'Special Elite', monospace; font-size: 11px; letter-spacing: 0.2em;
+  }
+  .plat .poids { font-family: 'Playfair Display', serif; font-size: 64px; color: var(--noir); margin: 32px 0 8px; line-height: 1; font-style: italic; }
+  .plat .prix { font-family: 'Special Elite', monospace; font-size: 32px; color: var(--rouge-postal); }
+  .plat .desc { font-family: 'Caveat', cursive; color: var(--sepia); margin-top: 16px; font-size: 22px; }
+
+  /* Marchés */
+  .marches { background: var(--paper-dark); padding-bottom: 140px; }
+  .marches-flex { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
+  .marche {
+    background: white; padding: 32px 40px;
+    border: 2px solid var(--sepia);
+    position: relative;
+    transition: transform .3s;
+  }
+  .marche:nth-child(1) { transform: rotate(-2deg); }
+  .marche:nth-child(2) { transform: rotate(1.5deg); }
+  .marche:nth-child(3) { transform: rotate(-1deg); }
+  .marche:hover { transform: rotate(0); }
+  .marche .pin {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    width: 24px; height: 24px; background: var(--rouge-postal); border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .marche .ville { font-family: 'Playfair Display', serif; font-style: italic; font-size: 40px; color: var(--noir); }
+  .marche .meta { font-family: 'Special Elite', monospace; font-size: 11px; color: var(--rouge-postal); letter-spacing: 0.3em; text-transform: uppercase; margin-top: 4px; text-align: center; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; margin-top: 48px; align-items: start; }
+  .contact-info {
+    background: white; padding: 40px; border: 1px solid var(--sepia);
+    box-shadow: 0 12px 40px rgba(107,74,48,0.15);
+  }
+  .contact-info h3 { font-size: 32px; color: var(--rouge-postal); margin-bottom: 8px; }
+  .contact-info .script-sub { font-family: 'Caveat', cursive; color: var(--sepia); font-size: 22px; margin-bottom: 24px; }
+  .info-line { padding: 16px 0; border-bottom: 1px dashed var(--sepia); }
+  .info-line .l { font-family: 'Special Elite', monospace; font-size: 10px; color: var(--rouge-postal); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-line .v { font-family: 'Playfair Display', serif; font-style: italic; font-size: 19px; color: var(--noir); }
+
+  form {
+    background: white; padding: 48px; display: grid; gap: 18px;
+    border: 1px solid var(--sepia);
+    box-shadow: 0 12px 40px rgba(107,74,48,0.15);
+    position: relative;
+  }
+  form::before {
+    content: 'À envoyer'; position: absolute; top: -12px; right: 24px;
+    background: var(--rouge-postal); color: white; padding: 4px 14px;
+    font-family: 'Special Elite', monospace; font-size: 11px; letter-spacing: 0.2em;
+  }
+  form label { font-family: 'Special Elite', monospace; font-size: 11px; color: var(--rouge-postal); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  form input, form textarea, form select {
+    width: 100%; padding: 12px; border: none; border-bottom: 1px solid var(--sepia);
+    background: transparent; font-family: 'Playfair Display', serif; font-size: 16px; color: var(--noir);
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-bottom-color: var(--rouge-postal); }
+  textarea { font-family: 'Caveat', cursive; font-size: 20px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  footer { padding: 32px; background: var(--noir); color: var(--paper); text-align: center; font-family: 'Special Elite', monospace; font-size: 12px; letter-spacing: 0.2em; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--rouge-postal);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 800px) {
+    .postcard { grid-template-columns: 1fr; transform: none; }
+    .pc-stamp { position: static; margin-bottom: 24px; }
+    .pc-stamp-circle { display: none; }
+    .pc-img-flag { bottom: 48px; right: 12px; width: 64px; }
+    .about-grid, .contact-grid, .row2 { grid-template-columns: 1fr; gap: 48px; }
+    .plats-grid { grid-template-columns: 1fr; }
+    .plat { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="postcard">
+    <div class="pc-img">
+      <div class="pc-img-flag" aria-label="Drapeau de la Corse">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" alt="">
+      </div>
+    </div>
+    <div class="pc-text">
+      <div class="pc-stamp">
+        <div class="head">Maison<br>Santi</div>
+        <div class="price">1963</div>
+        <div class="lbl">CORSICA</div>
+      </div>
+      <div class="pc-stamp-circle">DOURDAN<br>· 95 ·<br>2026</div>
+      <div>
+        <div class="pc-from">Une carte postale de Corse</div>
+        <h1>Bonjour de la <em>Corse</em>,<span class="script">avec le sourire !</span></h1>
+        <div class="greeting">Cher gourmand,</div>
+        <p class="body">Charcuterie, fromages, plateaux à emporter ou à recevoir... Toute l'âme de l'île, livrée à votre table. À très vite !</p>
+        <div class="pc-sig">— Santi</div>
+      </div>
+      <div style="margin-top:32px"><a href="#contact" class="btn">M'écrire →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <div class="label">— Notre histoire</div>
+    <h2 class="h-title">Trois <em>générations</em> de passion</h2>
+    <p class="h-script">depuis 1963</p>
+    <div class="about-grid">
+      <div class="about-photo"></div>
+      <div>
+        <h2>Le <em>sourire</em> en plus.</h2>
+        <p>Santi vous accueille avec la chaleur de l'île de Beauté. Charcuterie séchée à l'ancienne, fromages affinés au lait cru — chaque produit est sélectionné avec passion.</p>
+        <p>De l'animation découpe en mariage au plateau livré chez vous, nous mettons l'âme corse dans chaque geste.</p>
+        <div style="font-family:'Caveat',cursive;color:var(--rouge-postal);font-size:32px;margin-top:24px">— Santi, votre artisan corse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <div class="label">— Nos prestations</div>
+    <h2 class="h-title">À votre <em>service</em></h2>
+    <p class="h-script">pour chaque occasion</p>
+    <div class="services-grid">
+      <div class="stamp"><div class="ico">♥</div><div class="num">N°01</div><h3>Mariages</h3><p>Animation découpe en direct.</p></div>
+      <div class="stamp"><div class="ico">★</div><div class="num">N°02</div><h3>Réceptions</h3><p>Plateaux personnalisés sur mesure.</p></div>
+      <div class="stamp"><div class="ico">▲</div><div class="num">N°03</div><h3>Vente sous vide</h3><p>Expédition partout en France.</p></div>
+      <div class="stamp"><div class="ico">●</div><div class="num">N°04</div><h3>Livraison</h3><p>À domicile, à la date souhaitée.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="label">— Plateaux livraison</div>
+    <h2 class="h-title">Trois <em>formats</em></h2>
+    <p class="h-script">à recevoir chez vous</p>
+    <div class="plats-grid">
+      <div class="plat"><div class="ribbon">APÉRO</div><div class="poids">900g</div><div class="prix">29€</div><div class="desc">2 à 3 personnes</div></div>
+      <div class="plat"><div class="ribbon">SOIRÉE</div><div class="poids">1,4kg</div><div class="prix">39€</div><div class="desc">4 à 6 personnes</div></div>
+      <div class="plat"><div class="ribbon">RÉCEPTION</div><div class="poids">1,9kg</div><div class="prix">59€</div><div class="desc">6 à 8 personnes</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="marches">
+  <div class="container">
+    <div class="label">— Sur les marchés</div>
+    <h2 class="h-title">Venez nous <em>rencontrer</em></h2>
+    <p class="h-script">trois rendez-vous gourmands</p>
+    <div class="marches-flex">
+      <div class="marche"><div class="pin"></div><div class="ville">Dourdan</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="pin"></div><div class="ville">Gouvieux</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="pin"></div><div class="ville">Senlis</div><div class="meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="label">— Contact</div>
+    <h2 class="h-title">Écrivez-nous une <em>carte</em></h2>
+    <p class="h-script">on vous répond avec le sourire !</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>À votre écoute</h3>
+        <div class="script-sub">— sous 24h, promis !</div>
+        <div class="info-line"><div class="l">Téléphone</div><div class="v">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="l">Email</div><div class="v">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="l">Marchés</div><div class="v">Dourdan · Gouvieux · Senlis</div></div>
+        <div class="info-line"><div class="l">Délai</div><div class="v">Réponse sous 24h</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div><label>Prénom</label><input type="text" required></div>
+          <div><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div><label>Email</label><input type="email" required></div>
+          <div><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div><label>Type de demande</label>
+          <select><option>Mariage / Animation découpe</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div><label>Votre message</label><textarea rows="3" placeholder="Écrivez votre mot ici..."></textarea></div>
+        <button class="btn" type="submit">Poster le message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 MAISON SANTI · CARTE POSTALE DE CORSE · ENVOI DEPUIS 1963</footer>
+
+</body>
+</html>

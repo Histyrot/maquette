@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — Méditerranée</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --bleu: #0a4870;
+    --bleu-clair: #6cb4d4;
+    --turq: #1ca3a6;
+    --sable: #f4e8d0;
+    --blanc: #fdfaf2;
+    --noir: #0e1a22;
+    --rouge: #d44734;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--blanc); color: var(--noir); line-height: 1.6; }
+  h1, h2, h3 { font-family: 'Fraunces', serif; }
+
+  /* HERO grid */
+  .hero {
+    min-height: 100vh; padding: 32px;
+    display: grid; gap: 16px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 80px 1fr 1fr 60px;
+  }
+  .hero > div { background: var(--sable); border-radius: 16px; padding: 24px; overflow: hidden; position: relative; }
+  .h-brand { grid-column: 1 / 4; background: var(--bleu) !important; color: var(--blanc); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 12px 32px !important; }
+  .h-brand .logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 800; }
+  .h-brand .meta { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bleu-clair); margin-left: auto; }
+  .h-brand-flag {
+    flex-shrink: 0;
+    padding: 4px 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .h-brand-flag img { display: block; height: 28px; width: auto; border-radius: 4px; }
+  .h-title-cell {
+    grid-row: 2 / 4; background: var(--noir) !important; color: var(--blanc); padding: 48px !important;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .h-title-cell .eyebrow { color: var(--bleu-clair); letter-spacing: 0.3em; text-transform: uppercase; font-size: 11px; }
+  .h-title-cell h1 { font-size: clamp(56px, 7vw, 100px); line-height: 0.95; letter-spacing: -0.02em; font-weight: 600; }
+  .h-title-cell h1 i { color: var(--bleu-clair); font-style: italic; font-weight: 400; }
+  .h-title-cell .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .h-img-1 { background: url('../assets/charcuterie-1.jpg') center/cover !important; }
+  .h-img-2 { background: url('../assets/fromage.jpg') center/cover !important; }
+  .h-stat { background: var(--rouge) !important; color: var(--blanc); display: flex; flex-direction: column; justify-content: center; }
+  .h-stat .num { font-family: 'Fraunces', serif; font-size: 64px; font-weight: 800; line-height: 1; }
+  .h-stat .lbl { font-size: 13px; opacity: 0.9; margin-top: 8px; }
+  .h-tag { background: var(--turq) !important; color: var(--blanc); display: flex; align-items: center; }
+  .h-tag .item { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; }
+  .h-bottom { grid-column: 1 / 4; background: transparent !important; padding: 0 16px !important; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #6a7681; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; background: var(--bleu-clair); color: var(--noir); text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 999px; border: none; cursor: pointer; transition: all .25s; font-family: inherit; }
+  .btn:hover { background: var(--blanc); }
+  .btn-outline { background: transparent; color: var(--blanc); border: 1.5px solid rgba(255,255,255,0.3); }
+  .btn-outline:hover { background: var(--blanc); color: var(--noir); border-color: var(--blanc); }
+
+  /* Sections */
+  section { padding: 120px 32px; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .section-eyebrow { color: var(--turq); letter-spacing: 0.3em; text-transform: uppercase; font-size: 11px; margin-bottom: 16px; font-weight: 600; }
+  .section-title { font-size: clamp(40px, 6vw, 80px); line-height: 1; letter-spacing: -0.02em; margin-bottom: 24px; font-weight: 600; }
+  .section-title i { color: var(--bleu); font-style: italic; font-weight: 400; }
+
+  /* About */
+  .about { background: var(--sable); }
+  .about-grid { display: grid; grid-template-columns: 5fr 4fr 3fr; gap: 16px; }
+  .about-card { background: var(--blanc); padding: 40px; border-radius: 16px; }
+  .about-card h2 { font-size: 48px; line-height: 1.05; margin-bottom: 20px; }
+  .about-card p { color: #4a5560; margin-bottom: 14px; }
+  .about-img-tall { background: url('../assets/charcuterie-2.jpg') center/cover; border-radius: 16px; min-height: 480px; }
+  .about-stats { display: flex; flex-direction: column; gap: 16px; }
+  .stat-card { background: var(--bleu); color: var(--blanc); padding: 32px; border-radius: 16px; flex: 1; }
+  .stat-card:nth-child(2) { background: var(--rouge); }
+  .stat-card:nth-child(3) { background: var(--turq); }
+  .stat-card .num { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 700; line-height: 1; }
+  .stat-card .lbl { margin-top: 8px; font-size: 14px; opacity: 0.9; }
+
+  /* Services */
+  .services { background: var(--noir); color: var(--blanc); }
+  .services .section-eyebrow { color: var(--bleu-clair); }
+  .services-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+  .services-head p { color: #8a96a0; max-width: 360px; }
+  .services-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(6, 1fr); grid-auto-rows: 240px;
+  }
+  .svc { background: #1a2832; border-radius: 16px; padding: 32px; transition: all .35s; cursor: default; position: relative; overflow: hidden; }
+  .svc:hover { background: #243340; transform: translateY(-4px); }
+  .svc h3 { font-size: 28px; margin-bottom: 12px; font-weight: 600; }
+  .svc p { color: #8a96a0; font-size: 14px; }
+  .svc .ico { font-size: 32px; margin-bottom: 16px; }
+  .svc.s1 { grid-column: span 3; background: var(--bleu); }
+  .svc.s2 { grid-column: span 3; }
+  .svc.s3 { grid-column: span 2; }
+  .svc.s4 { grid-column: span 2; background: var(--rouge); }
+  .svc.s5 { grid-column: span 2; background: var(--turq); }
+
+  /* Plateaux */
+  .plats { background: var(--blanc); }
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .plat { background: var(--sable); padding: 40px 32px; border-radius: 20px; transition: all .3s; }
+  .plat:hover { background: var(--bleu); color: var(--blanc); transform: translateY(-8px); }
+  .plat:hover .lbl, .plat:hover .desc { color: rgba(255,255,255,0.7); }
+  .plat .lbl { color: var(--turq); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; }
+  .plat .poids { font-family: 'Fraunces', serif; font-size: 80px; font-weight: 700; line-height: 1; margin: 24px 0 8px; letter-spacing: -0.04em; }
+  .plat .prix { font-size: 32px; font-weight: 600; }
+  .plat .desc { color: #4a5560; margin-top: 16px; font-size: 14px; }
+
+  /* Marchés */
+  .marches { background: var(--bleu); color: var(--blanc); }
+  .marches .section-eyebrow { color: var(--bleu-clair); }
+  .marches-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .marche { background: rgba(255,255,255,0.08); padding: 56px 32px; border-radius: 16px; text-align: center; transition: all .3s; }
+  .marche:hover { background: rgba(255,255,255,0.15); transform: translateY(-6px); }
+  .marche .ville { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 700; }
+  .marche .meta { color: var(--bleu-clair); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 8px; }
+
+  /* Contact */
+  .contact { background: var(--sable); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; }
+  .contact-info { background: var(--noir); color: var(--blanc); padding: 48px; border-radius: 20px; }
+  .contact-info .section-eyebrow { color: var(--bleu-clair); }
+  .contact-info h2 { font-size: 40px; margin-bottom: 16px; line-height: 1.1; font-weight: 600; }
+  .contact-info > p { color: #8a96a0; margin-bottom: 32px; }
+  .info-line { padding: 16px 0; border-bottom: 1px solid #243340; }
+  .info-line .l { color: var(--bleu-clair); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-line .v { font-family: 'Fraunces', serif; font-size: 20px; }
+
+  form { background: var(--blanc); padding: 48px; border-radius: 20px; display: grid; gap: 18px; }
+  form label { font-size: 11px; color: var(--turq); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; display: block; font-weight: 600; }
+  form input, form textarea, form select {
+    width: 100%; padding: 14px 16px; border: 1.5px solid #e0d8c0; background: var(--blanc); font-family: inherit; font-size: 15px; border-radius: 8px;
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--bleu); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form .btn { background: var(--rouge); color: var(--blanc); padding: 18px 28px; justify-content: center; }
+  form .btn:hover { background: var(--noir); color: var(--blanc); }
+
+  footer { padding: 32px; background: var(--noir); color: #6a7681; text-align: center; font-size: 12px; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--turq);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .h-brand, .h-title-cell, .h-bottom { grid-column: 1; }
+    .h-title-cell { grid-row: auto; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-tall { min-height: 320px; }
+    .services-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .svc { grid-column: 1 !important; min-height: 200px; }
+    .plats-grid, .marches-grid, .contact-grid, .row2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="h-brand">
+    <div class="logo">Santi.</div>
+    <div class="h-brand-flag" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" width="42" height="28" alt="">
+    </div>
+    <div class="meta">Charcuterie & Fromages Corses · 1963</div>
+  </div>
+  <div class="h-title-cell">
+    <div>
+      <div class="eyebrow">— Maison Santi</div>
+    </div>
+    <h1>L'<i>île</i> dans votre<br>assiette.</h1>
+    <div class="cta-row">
+      <a href="#contact" class="btn">Nous contacter →</a>
+      <a href="#plats" class="btn btn-outline">Voir les plateaux</a>
+    </div>
+  </div>
+  <div class="h-img-1"></div>
+  <div class="h-stat"><div class="num">3</div><div class="lbl">Marchés / semaine</div></div>
+  <div class="h-img-2"></div>
+  <div class="h-tag"><div class="item">Charcuterie · Fromages · Plateaux</div></div>
+  <div class="h-bottom">
+    <div>↓ Faites défiler</div>
+    <div>Dourdan · Gouvieux · Senlis</div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <div class="section-eyebrow">— À propos</div>
+    <h2 class="section-title">Trois générations,<br>une même <i>passion</i>.</h2>
+    <div class="about-grid" style="margin-top:48px">
+      <div class="about-card">
+        <h2 style="font-size:32px">Le sourire en plus</h2>
+        <p>Santi vous accueille avec la chaleur de l'île de Beauté. Charcuterie séchée à l'ancienne, fromages affinés au lait cru.</p>
+        <p>Animation découpe pour vos mariages, plateaux pour vos réceptions, vente sous vide partout en France.</p>
+      </div>
+      <div class="about-img-tall"></div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="num">1963</div><div class="lbl">Tradition familiale</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="lbl">Prestations</div></div>
+        <div class="stat-card"><div class="num">100%</div><div class="lbl">Artisanal corse</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="section-eyebrow">— Prestations</div>
+        <h2 class="section-title" style="color:var(--blanc)">Nos <i style="color:var(--bleu-clair)">services</i>.</h2>
+      </div>
+      <p>De l'animation événementielle à la livraison à domicile, nous répondons à toutes vos envies.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc s1"><div class="ico">◆</div><h3>Mariages</h3><p>Animation découpe en direct, devant vos invités.</p></div>
+      <div class="svc s2"><div class="ico">◇</div><h3>Réceptions</h3><p>Plateaux personnalisés pour vos événements pros et privés.</p></div>
+      <div class="svc s3"><div class="ico">▲</div><h3>Vente sous vide</h3><p>Expédition partout en France.</p></div>
+      <div class="svc s4"><div class="ico">●</div><h3>Livraison</h3><p>À domicile, à la date souhaitée.</p></div>
+      <div class="svc s5"><div class="ico">★</div><h3>Marchés</h3><p>Trois marchés / semaine.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="plats" id="plats">
+  <div class="container">
+    <div class="section-eyebrow">— Plateaux livraison</div>
+    <h2 class="section-title">Trois <i>formats</i>.</h2>
+    <div class="plats-grid" style="margin-top:48px">
+      <div class="plat"><div class="lbl">Apéro · 2-3 pers.</div><div class="poids">900g</div><div class="prix">29€</div><div class="desc">Sélection charcuterie & fromage.</div></div>
+      <div class="plat"><div class="lbl">Soirée · 4-6 pers.</div><div class="poids">1,4kg</div><div class="prix">39€</div><div class="desc">Plus généreux, parfait entre amis.</div></div>
+      <div class="plat"><div class="lbl">Réception · 6-8 pers.</div><div class="poids">1,9kg</div><div class="prix">59€</div><div class="desc">Le grand format pour vos événements.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="marches">
+  <div class="container">
+    <div class="section-eyebrow">— Marchés</div>
+    <h2 class="section-title" style="color:var(--blanc)">Retrouvez-<i style="color:var(--bleu-clair)">nous</i>.</h2>
+    <div class="marches-grid" style="margin-top:48px">
+      <div class="marche"><div class="ville">Dourdan</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="ville">Gouvieux</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="ville">Senlis</div><div class="meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-eyebrow">— Contact</div>
+    <h2 class="section-title">Discutons <i>ensemble</i>.</h2>
+    <div class="contact-grid" style="margin-top:48px">
+      <div class="contact-info">
+        <div class="section-eyebrow">— Coordonnées</div>
+        <h2>À votre écoute</h2>
+        <p>Une commande, un événement, une question ? Réponse sous 24h, toujours avec le sourire.</p>
+        <div class="info-line"><div class="l">Téléphone</div><div class="v">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="l">Email</div><div class="v">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="l">Marchés</div><div class="v">Dourdan · Gouvieux · Senlis</div></div>
+        <div class="info-line"><div class="l">Délai</div><div class="v">Réponse sous 24h</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div><label>Prénom</label><input type="text" required></div>
+          <div><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div><label>Email</label><input type="email" required></div>
+          <div><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div><label>Type de demande</label>
+          <select><option>Mariage / Animation découpe</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div><label>Message</label><textarea rows="4"></textarea></div>
+        <button class="btn" type="submit">Envoyer le message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Maison Santi · Méditerranée · Corse</footer>
+
+</body>
+</html>

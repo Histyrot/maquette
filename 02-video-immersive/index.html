@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — L'art de la découpe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f5f1e8;
+    --accent: #d4a574;
+    --rouge: #a82626;
+    --muted: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; overflow-x: hidden; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  /* HERO with video bg */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55) saturate(1.1);
+    animation: zoomSlow 22s ease-in-out infinite alternate;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('../assets/charcuterie-1.jpg') center/cover;
+    filter: brightness(0.55);
+  }
+  @keyframes zoomSlow { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.9) 100%); }
+
+  .hero-flag-glass {
+    position: absolute;
+    bottom: 28px;
+    left: 24px;
+    z-index: 4;
+    padding: 10px 12px;
+    background: rgba(10, 10, 10, 0.45);
+    border: 1px solid rgba(212, 165, 116, 0.35);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .hero-flag-glass img {
+    display: block;
+    height: 26px;
+    width: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 6vw 100px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeUp 1.2s ease both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+  .hero-tag { display: inline-flex; align-items: center; gap: 12px; color: var(--accent); letter-spacing: 0.3em; text-transform: uppercase; font-size: 11px; margin-bottom: 32px; }
+  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+  .hero h1 { font-size: clamp(56px, 10vw, 140px); font-weight: 900; line-height: 0.95; letter-spacing: -0.03em; max-width: 1000px; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero-meta { display: flex; gap: 60px; margin-top: 48px; flex-wrap: wrap; }
+  .hero-meta div { font-size: 13px; color: var(--muted); }
+  .hero-meta strong { display: block; color: var(--fg); font-size: 22px; font-family: 'Playfair Display', serif; margin-bottom: 4px; }
+
+  .play-btn {
+    position: absolute; top: 50%; right: 6vw; transform: translateY(-50%); z-index: 2;
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); backdrop-filter: blur(8px);
+    color: var(--fg); font-size: 24px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s;
+  }
+  .play-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); transform: translateY(-50%) scale(1.1); }
+  .play-btn::before { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 1px solid var(--accent); animation: ripple 2s ease-out infinite; }
+  @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+
+  /* Sections */
+  section { padding: 140px 6vw; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .about h2 { font-size: clamp(40px, 5vw, 72px); line-height: 1.05; margin-bottom: 32px; }
+  .about h2 em { color: var(--accent); font-style: italic; }
+  .about p { color: #c0bcb2; margin-bottom: 20px; font-size: 17px; }
+  .about-img { aspect-ratio: 3/4; background: url('../assets/fromage.jpg') center/cover; border: 1px solid #2a2a2a; }
+
+  /* Services */
+  .services-section { background: #0d0d0d; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+  .services-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 64px; flex-wrap: wrap; gap: 24px; }
+  .services-head h2 { font-size: clamp(36px, 5vw, 64px); }
+  .services-head p { color: var(--muted); max-width: 360px; }
+  .services-list { display: grid; gap: 1px; background: #1a1a1a; }
+  .service-row {
+    background: var(--bg); padding: 40px 0;
+    display: grid; grid-template-columns: 80px 1fr 2fr 100px;
+    gap: 32px; align-items: center;
+    transition: all .4s; padding-left: 24px; padding-right: 24px;
+  }
+  .service-row:hover { background: #141414; padding-left: 40px; }
+  .service-row .num { color: var(--accent); font-family: 'Playfair Display', serif; font-size: 24px; }
+  .service-row h3 { font-size: 28px; }
+  .service-row p { color: var(--muted); font-size: 15px; }
+  .service-row .arrow { text-align: right; color: var(--accent); font-size: 24px; transition: transform .3s; }
+  .service-row:hover .arrow { transform: translateX(8px); }
+
+  /* Plateaux */
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .plat {
+    border: 1px solid #2a2a2a; padding: 48px 32px; text-align: center;
+    position: relative; overflow: hidden; transition: all .4s;
+  }
+  .plat::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--accent), var(--rouge));
+    opacity: 0; transition: opacity .4s; z-index: 0;
+  }
+  .plat:hover::before { opacity: 0.1; }
+  .plat:hover { transform: translateY(-8px); border-color: var(--accent); }
+  .plat > * { position: relative; z-index: 1; }
+  .plat .label { color: var(--accent); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .plat .poids { font-family: 'Playfair Display', serif; font-size: 64px; margin: 16px 0; }
+  .plat .prix { font-size: 28px; color: var(--fg); }
+  .plat .prix span { color: var(--accent); }
+  .plat .desc { color: var(--muted); font-size: 14px; margin-top: 16px; }
+
+  /* Marchés */
+  .marches-section { background: #0d0d0d; }
+  .marches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #1f1f1f; }
+  .marche-cell { padding: 60px 32px; border-right: 1px solid #1f1f1f; text-align: center; transition: background .3s; }
+  .marche-cell:last-child { border-right: none; }
+  .marche-cell:hover { background: #111; }
+  .marche-cell .ville { font-family: 'Playfair Display', serif; font-size: 56px; }
+  .marche-cell .meta { color: var(--accent); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 12px; }
+
+  /* Contact */
+  .contact-section { background: linear-gradient(180deg, #0a0a0a 0%, #1a1410 100%); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
+  .contact-info h2 { font-size: clamp(36px, 5vw, 64px); margin-bottom: 24px; }
+  .contact-info > p { color: #c0bcb2; margin-bottom: 40px; font-size: 17px; }
+  .info-line { padding: 20px 0; border-bottom: 1px solid #2a2520; display: flex; justify-content: space-between; align-items: center; }
+  .info-line:first-of-type { border-top: 1px solid #2a2520; }
+  .info-line .label { color: var(--muted); font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .info-line .val { color: var(--fg); font-family: 'Playfair Display', serif; font-size: 20px; }
+
+  form { display: grid; gap: 20px; }
+  .field { position: relative; }
+  .field label { position: absolute; top: 16px; left: 0; color: var(--muted); font-size: 14px; pointer-events: none; transition: all .25s; }
+  .field input, .field textarea, .field select {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid #3a3530;
+    color: var(--fg); padding: 16px 0 12px; font-family: inherit; font-size: 16px;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--accent); }
+  .field input:focus + label, .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label { top: -8px; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .submit-btn {
+    margin-top: 16px; padding: 20px 40px; background: var(--accent); color: var(--bg);
+    border: none; cursor: pointer; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 13px; transition: all .3s;
+  }
+  .submit-btn:hover { background: var(--fg); }
+
+  footer { padding: 40px 6vw; border-top: 1px solid #1a1a1a; color: var(--muted); font-size: 12px; text-align: center; }
+
+  /* Focus a11y */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .about, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .plats-grid, .marches { grid-template-columns: 1fr; }
+    .marche-cell { border-right: none; border-bottom: 1px solid #1f1f1f; }
+    .service-row { grid-template-columns: 50px 1fr; }
+    .service-row p, .service-row .arrow { display: none; }
+    .play-btn { display: none; }
+    .row2 { grid-template-columns: 1fr; }
+    .hero-flag-glass { bottom: 22px; left: 16px; padding: 8px 12px; }
+    .hero-flag-glass img { height: 22px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <!-- Vidéo de fond : remplaçable par n'importe quel fichier MP4 (banque d'images, vidéo client, etc.) -->
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="../assets/charcuterie-1.jpg">
+    <source src="https://cdn.pixabay.com/video/2023/10/19/185906-877317104_large.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg" style="display:none"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-flag-glass" aria-label="Drapeau de la Corse">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" width="40" height="27" alt="">
+  </div>
+  <button type="button" class="play-btn" id="heroPlayBtn" aria-label="Mettre en pause ou lire la vidéo">⏸</button>
+  <div class="hero-content">
+    <div class="hero-tag">Maison Santi</div>
+    <h1>L'art de la <em>découpe</em>,<br>le goût de la <em>Corse</em>.</h1>
+    <div class="hero-meta">
+      <div><strong>1963</strong>Tradition familiale</div>
+      <div><strong>3</strong>Marchés hebdomadaires</div>
+      <div><strong>100%</strong>Artisanal corse</div>
+    </div>
+  </div>
+</section>
+
+<section class="about reveal">
+  <div>
+    <h2>Une <em>passion</em> qui se transmet, un <em>sourire</em> qui se partage.</h2>
+    <p>Derrière chaque tranche, un savoir-faire transmis depuis trois générations. Santi vous accueille avec la chaleur et la générosité qui font la réputation de l'île de Beauté.</p>
+    <p>De l'animation découpe en mariage au plateau livré chez vous, nous mettons l'âme corse dans chaque geste.</p>
+  </div>
+  <div class="about-img"></div>
+</section>
+
+<section class="services-section reveal">
+  <div class="container">
+    <div class="services-head">
+      <h2>Nos prestations</h2>
+      <p>De l'événementiel à la livraison, Santi répond à toutes vos envies gourmandes.</p>
+    </div>
+    <div class="services-list">
+      <div class="service-row"><div class="num">01</div><h3>Mariages</h3><p>Animation découpe en direct, devant vos invités. Spectacle gourmand.</p><div class="arrow">→</div></div>
+      <div class="service-row"><div class="num">02</div><h3>Réceptions</h3><p>Plateaux personnalisés pour vos événements professionnels et privés.</p><div class="arrow">→</div></div>
+      <div class="service-row"><div class="num">03</div><h3>Vente sous vide</h3><p>Charcuterie expédiée fraîche, partout en France.</p><div class="arrow">→</div></div>
+      <div class="service-row"><div class="num">04</div><h3>Livraison plateaux</h3><p>Vos plateaux livrés à domicile, à la date souhaitée.</p><div class="arrow">→</div></div>
+      <div class="service-row"><div class="num">05</div><h3>Marchés</h3><p>Retrouvez-nous chaque semaine sur 3 marchés.</p><div class="arrow">→</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="services-head">
+      <h2>Plateaux <em style="color:var(--accent);font-style:italic;font-family:inherit">livraison</em></h2>
+      <p>Trois formats, trois ambiances, mille saveurs.</p>
+    </div>
+    <div class="plats-grid">
+      <div class="plat"><div class="label">Format Apéro</div><div class="poids">900g</div><div class="prix"><span>29</span>€</div><div class="desc">Pour 2 à 3 personnes</div></div>
+      <div class="plat"><div class="label">Format Soirée</div><div class="poids">1,4kg</div><div class="prix"><span>39</span>€</div><div class="desc">Pour 4 à 6 personnes</div></div>
+      <div class="plat"><div class="label">Format Réception</div><div class="poids">1,9kg</div><div class="prix"><span>59</span>€</div><div class="desc">Pour 6 à 8 personnes</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="marches-section reveal">
+  <div class="container">
+    <div class="services-head">
+      <h2>Sur les <em style="color:var(--accent);font-style:italic;font-family:inherit">marchés</em></h2>
+      <p>Venez nous rencontrer et goûter nos produits.</p>
+    </div>
+    <div class="marches">
+      <div class="marche-cell"><div class="ville">Dourdan</div><div class="meta">Marché</div></div>
+      <div class="marche-cell"><div class="ville">Gouvieux</div><div class="meta">Marché</div></div>
+      <div class="marche-cell"><div class="ville">Senlis</div><div class="meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section reveal">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Contact</h2>
+        <p>Une commande, un événement, une question ? Écrivez-nous, nous vous répondons avec le sourire.</p>
+        <div class="info-line"><div class="label">Téléphone</div><div class="val">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="label">Email</div><div class="val">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="label">Marchés</div><div class="val">Dourdan · Gouvieux · Senlis</div></div>
+        <div class="info-line"><div class="label">Réponse</div><div class="val">Sous 24h</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div class="field"><input type="text" placeholder=" " id="f1"><label for="f1">Prénom</label></div>
+          <div class="field"><input type="text" placeholder=" " id="f2"><label for="f2">Nom</label></div>
+        </div>
+        <div class="row2">
+          <div class="field"><input type="email" placeholder=" " id="f3"><label for="f3">Email</label></div>
+          <div class="field"><input type="tel" placeholder=" " id="f4"><label for="f4">Téléphone</label></div>
+        </div>
+        <div class="field">
+          <select aria-label="Type de demande"><option>Mariage / Animation</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div class="field"><textarea placeholder=" " id="f5" rows="4"></textarea><label for="f5">Votre message</label></div>
+        <button class="submit-btn" type="submit">Envoyer le message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Maison Santi · L'âme de la Corse</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const heroVideo = document.getElementById('heroVideo');
+  const heroPlayBtn = document.getElementById('heroPlayBtn');
+  function syncPlayLabel() {
+    if (!heroVideo || !heroPlayBtn) return;
+    const paused = heroVideo.paused;
+    heroPlayBtn.textContent = paused ? '▶' : '⏸';
+    heroPlayBtn.setAttribute('aria-label', paused ? 'Lire la vidéo' : 'Mettre en pause la vidéo');
+  }
+  if (heroVideo && heroPlayBtn) {
+    heroPlayBtn.addEventListener('click', () => {
+      if (heroVideo.paused) heroVideo.play().catch(() => {});
+      else heroVideo.pause();
+      syncPlayLabel();
+    });
+    heroVideo.addEventListener('play', syncPlayLabel);
+    heroVideo.addEventListener('pause', syncPlayLabel);
+    syncPlayLabel();
+  }
+</script>
+
+</body>
+</html>

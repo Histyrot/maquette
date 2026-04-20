@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110" preserveAspectRatio="xMidYMid meet">
+  <g>
+    <path d="M50,6 C30,6 18,22 18,44 C18,53 20,62 24,70 L24,86 C24,91 28,94 33,94 L42,94 L42,88 C42,85 44,83 47,83 L60,83 C72,83 80,73 82,60 C84,49 82,33 72,22 C66,12 58,6 50,6 Z" fill="currentColor"/>
+    <rect x="14" y="38" width="68" height="10" fill="#FFFFFF"/>
+    <path d="M82,38 L92,32 L92,54 L82,48 Z" fill="#FFFFFF"/>
+    <circle cx="58" cy="46" r="2.5" fill="currentColor"/>
+  </g>
+</svg>

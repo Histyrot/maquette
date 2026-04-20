@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — L'histoire d'un sourire</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --warm: #fff8ee;
+    --cream: #f5e9d4;
+    --rouge: #b73229;
+    --terre: #8a4a2a;
+    --or: #d39936;
+    --noir: #1a0f08;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm); color: var(--noir); line-height: 1.7; overflow-x: hidden; }
+  h1, h2, h3 { font-family: 'Crimson Pro', serif; font-weight: 600; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 32px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: var(--cream); border-radius: 50%; z-index: 0; }
+  .hero::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 400px; height: 400px; background: rgba(211, 153, 54, 0.15); border-radius: 50%; z-index: 0; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; width: 100%; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px 8px 10px; background: white; border-radius: 999px; font-size: 12px; color: var(--terre); font-weight: 500; margin-bottom: 32px; box-shadow: 0 4px 20px rgba(138,74,42,0.1); animation: fadeUp .8s ease both; }
+  .hero-tag .dot { width: 8px; height: 8px; background: var(--rouge); border-radius: 50%; animation: pulse 2s ease-in-out infinite; flex-shrink: 0; }
+  .hero-tag .tag-flag { height: 22px; width: auto; border-radius: 4px; flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
+  .hero h1 { font-size: clamp(48px, 7vw, 96px); line-height: 1.05; margin-bottom: 24px; animation: fadeUp 1s ease 0.1s both; }
+  .hero h1 em { color: var(--rouge); font-style: italic; }
+  .hero h1 .highlight { position: relative; display: inline-block; }
+  .hero h1 .highlight::after { content: ''; position: absolute; bottom: 6px; left: 0; right: 0; height: 12px; background: var(--or); opacity: 0.4; z-index: -1; }
+  .hero p { font-size: 19px; color: #5a4030; max-width: 480px; margin-bottom: 32px; animation: fadeUp 1s ease 0.2s both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+  .hero-img-wrap { position: relative; animation: fadeUp 1.2s ease 0.3s both; }
+  .hero-img { aspect-ratio: 4/5; background: url('../assets/charcuterie-1.jpg') center/cover; border-radius: 200px 200px 24px 24px; }
+  .hero-badge { position: absolute; bottom: 24px; left: -24px; background: var(--noir); color: var(--warm); padding: 20px 24px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: float 4s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .hero-badge .num { font-family: 'Crimson Pro', serif; font-size: 36px; color: var(--or); }
+  .hero-badge .lbl { font-size: 12px; opacity: 0.7; }
+  .hero-badge2 { position: absolute; top: 32px; right: -16px; background: white; padding: 16px 20px; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px; animation: float 5s ease-in-out infinite reverse; }
+  .hero-badge2 .emoji { font-size: 24px; }
+  .hero-badge2 .txt { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 16px; color: var(--terre); }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; background: var(--noir); color: var(--warm); text-decoration: none; font-weight: 600; border-radius: 999px; transition: all .3s; cursor: pointer; border: none; font-family: inherit; font-size: 15px; }
+  .btn:hover { background: var(--rouge); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(183,50,41,0.3); }
+
+  /* Story sections */
+  .story { padding: 140px 32px; position: relative; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .chapter { color: var(--terre); letter-spacing: 0.4em; text-transform: uppercase; font-size: 12px; margin-bottom: 16px; font-weight: 600; }
+  .story-h { font-size: clamp(40px, 6vw, 72px); line-height: 1.05; margin-bottom: 32px; }
+  .story-h em { color: var(--rouge); font-style: italic; }
+  .story-p { font-size: 19px; color: #5a4030; margin-bottom: 16px; }
+
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-grid.reverse { direction: rtl; }
+  .story-grid.reverse > * { direction: ltr; }
+  .story-img { aspect-ratio: 4/5; background-size: cover; background-position: center; border-radius: 24px; }
+  .story-img.img2 { background-image: url('../assets/charcuterie-2.jpg'); border-radius: 24px 24px 200px 200px; }
+  .story-img.img3 { background-image: url('../assets/fromage.jpg'); border-radius: 24px; }
+
+  /* Services */
+  .services { background: var(--noir); color: var(--warm); border-radius: 48px 48px 0 0; }
+  .services .chapter { color: var(--or); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
+  .svc { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 20px; transition: all .3s; }
+  .svc:hover { background: rgba(255,255,255,0.1); transform: translateY(-6px); }
+  .svc .ico { width: 48px; height: 48px; background: var(--rouge); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--warm); font-size: 24px; margin-bottom: 20px; }
+  .svc h3 { font-size: 24px; margin-bottom: 8px; }
+  .svc p { color: rgba(255,248,238,0.7); font-size: 14px; }
+
+  /* Plateaux */
+  .plats { background: var(--cream); }
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .plat { background: var(--warm); padding: 40px 32px; border-radius: 24px; text-align: center; transition: all .35s; position: relative; overflow: hidden; }
+  .plat:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(138,74,42,0.15); }
+  .plat .ribbon { display: inline-block; background: var(--rouge); color: var(--warm); padding: 4px 14px; border-radius: 999px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+  .plat .poids { font-family: 'Crimson Pro', serif; font-size: 84px; color: var(--noir); font-weight: 700; line-height: 1; margin: 24px 0 8px; }
+  .plat .prix { font-size: 28px; color: var(--rouge); font-weight: 700; }
+  .plat .desc { color: #6a4f30; margin-top: 16px; font-style: italic; font-family: 'Crimson Pro', serif; font-size: 17px; }
+
+  /* Marchés */
+  .marches { padding: 120px 32px; }
+  .marches-flex { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 48px; }
+  .marche {
+    flex: 1; min-width: 240px; background: white; padding: 48px 32px; border-radius: 24px; text-align: center;
+    transition: all .35s; box-shadow: 0 12px 40px rgba(138,74,42,0.08);
+  }
+  .marche:hover { transform: translateY(-8px); }
+  .marche .pin { font-size: 32px; color: var(--rouge); }
+  .marche .ville { font-family: 'Crimson Pro', serif; font-size: 48px; font-weight: 700; margin-top: 8px; }
+  .marche .meta { font-size: 13px; color: var(--terre); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 8px; }
+
+  /* Contact */
+  .contact { background: var(--noir); color: var(--warm); border-radius: 48px 48px 0 0; }
+  .contact .chapter { color: var(--or); }
+  .contact-h { color: var(--warm); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; margin-top: 48px; }
+  .contact-info > p { color: rgba(255,248,238,0.7); margin-bottom: 32px; font-size: 17px; }
+  .info-card { background: rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; margin-bottom: 12px; display: flex; gap: 16px; align-items: center; transition: background .25s; }
+  .info-card:hover { background: rgba(255,255,255,0.08); }
+  .info-card .ico { width: 44px; height: 44px; background: var(--rouge); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; }
+  .info-card .l { font-size: 12px; color: rgba(255,248,238,0.6); letter-spacing: 0.15em; text-transform: uppercase; }
+  .info-card .v { font-family: 'Crimson Pro', serif; font-size: 19px; }
+
+  form { background: var(--warm); padding: 40px; border-radius: 24px; display: grid; gap: 16px; color: var(--noir); }
+  form label { font-size: 11px; color: var(--terre); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; display: block; }
+  form input, form textarea, form select {
+    width: 100%; padding: 14px 16px; border: 2px solid var(--cream); background: white;
+    font-family: inherit; font-size: 15px; border-radius: 12px;
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--rouge); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form .btn { background: var(--rouge); justify-content: center; }
+  form .btn:hover { background: var(--noir); }
+
+  footer { padding: 40px; background: var(--noir); color: rgba(255,248,238,0.5); text-align: center; font-size: 13px; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--rouge);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 800px) {
+    .hero-inner, .story-grid, .contact-grid, .row2 { grid-template-columns: 1fr; gap: 48px; }
+    .plats-grid { grid-template-columns: 1fr; }
+    .hero-badge2 { right: 8px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">
+        <img class="tag-flag" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" width="33" height="22" alt="">
+        <div class="dot"></div>Charcuterie & Fromages Corses · 1963</div>
+      <h1>Une <em>île</em>, un <span class="highlight">sourire</span>, mille saveurs.</h1>
+      <p>Bonjour ! Je suis Santi. Depuis trois générations, je vous accueille avec la chaleur de la Corse et le meilleur du terroir.</p>
+      <a href="#contact" class="btn">Discutons ensemble →</a>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-img"></div>
+      <div class="hero-badge">
+        <div class="num">1963</div>
+        <div class="lbl">Tradition familiale</div>
+      </div>
+      <div class="hero-badge2"><div class="emoji">★</div><div class="txt">Toujours avec le sourire</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="story reveal">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <div class="chapter">— Chapitre 01 · L'origine</div>
+        <h2 class="story-h">Tout commence en <em>Corse</em>, comme une histoire de famille.</h2>
+        <p class="story-p">Trois générations de passionnés, des mains qui savent, un terroir qui parle. Chaque coppa, chaque lonzu raconte la même histoire : celle d'un savoir-faire transmis avec amour.</p>
+        <p class="story-p">Et derrière chaque tranche, ce sourire chaleureux qui vous accueille au marché.</p>
+      </div>
+      <div class="story-img img2"></div>
+    </div>
+  </div>
+</section>
+
+<section class="story reveal" style="background:var(--cream)">
+  <div class="container">
+    <div class="story-grid reverse">
+      <div>
+        <div class="chapter">— Chapitre 02 · Le savoir-faire</div>
+        <h2 class="story-h">Une <em>passion</em> qui se goûte autant qu'elle se vit.</h2>
+        <p class="story-p">Charcuterie séchée à l'ancienne, fromages affinés au lait cru, brocciu, casgiu… Nous sélectionnons chaque produit avec exigence.</p>
+        <p class="story-p">Et nous le partageons avec générosité.</p>
+      </div>
+      <div class="story-img img3"></div>
+    </div>
+  </div>
+</section>
+
+<section class="story services reveal">
+  <div class="container">
+    <div class="chapter">— Chapitre 03 · Nos prestations</div>
+    <h2 class="story-h" style="color:var(--warm)">À votre <em>service</em>, à votre table.</h2>
+    <p class="story-p" style="color:rgba(255,248,238,0.7)">De votre quotidien aux plus grands moments, nous sommes là.</p>
+    <div class="services-grid">
+      <div class="svc"><div class="ico">♥</div><h3>Mariages</h3><p>Animation découpe en direct, devant vos invités.</p></div>
+      <div class="svc"><div class="ico">★</div><h3>Réceptions</h3><p>Plateaux personnalisés pour vos événements.</p></div>
+      <div class="svc"><div class="ico">▲</div><h3>Vente sous vide</h3><p>Expédition partout en France.</p></div>
+      <div class="svc"><div class="ico">●</div><h3>Livraison</h3><p>À domicile, à la date souhaitée.</p></div>
+      <div class="svc"><div class="ico">◆</div><h3>Marchés</h3><p>Trois marchés chaque semaine.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="story plats reveal">
+  <div class="container">
+    <div class="chapter">— Chapitre 04 · Plateaux</div>
+    <h2 class="story-h">Trois formats, mille <em>saveurs</em>.</h2>
+    <p class="story-p">Choisissez selon vos envies et le nombre de convives.</p>
+    <div class="plats-grid">
+      <div class="plat"><div class="ribbon">Apéro</div><div class="poids">900g</div><div class="prix">29€</div><div class="desc">2 à 3 personnes</div></div>
+      <div class="plat"><div class="ribbon">Soirée</div><div class="poids">1,4kg</div><div class="prix">39€</div><div class="desc">4 à 6 personnes</div></div>
+      <div class="plat"><div class="ribbon">Réception</div><div class="poids">1,9kg</div><div class="prix">59€</div><div class="desc">6 à 8 personnes</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="story marches reveal">
+  <div class="container">
+    <div class="chapter">— Chapitre 05 · Marchés</div>
+    <h2 class="story-h">Venez nous <em>rencontrer</em>.</h2>
+    <div class="marches-flex">
+      <div class="marche"><div class="pin">◉</div><div class="ville">Dourdan</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="pin">◉</div><div class="ville">Gouvieux</div><div class="meta">Marché</div></div>
+      <div class="marche"><div class="pin">◉</div><div class="ville">Senlis</div><div class="meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="story contact reveal" id="contact">
+  <div class="container">
+    <div class="chapter">— Chapitre 06 · Contact</div>
+    <h2 class="story-h contact-h">Et si on se <em>parlait</em> ?</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Une commande, un mariage, un projet ? Écrivez-moi, je vous réponds avec le sourire sous 24h.</p>
+        <div class="info-card"><div class="ico">✆</div><div><div class="l">Téléphone</div><div class="v">06 XX XX XX XX</div></div></div>
+        <div class="info-card"><div class="ico">✉</div><div><div class="l">Email</div><div class="v">contact@santi-corse.fr</div></div></div>
+        <div class="info-card"><div class="ico">◉</div><div><div class="l">Marchés</div><div class="v">Dourdan · Gouvieux · Senlis</div></div></div>
+        <div class="info-card"><div class="ico">⏱</div><div><div class="l">Réponse</div><div class="v">Sous 24h</div></div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div><label>Prénom</label><input type="text" required></div>
+          <div><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div><label>Email</label><input type="email" required></div>
+          <div><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div><label>Type de demande</label>
+          <select><option>Mariage / Animation découpe</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div><label>Votre message</label><textarea rows="4"></textarea></div>
+        <button class="btn" type="submit">Envoyer le message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Maison Santi · L'âme de la Corse, dans votre assiette</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

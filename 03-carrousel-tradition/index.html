@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santi — Tradition Corse</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/maquette-chrome.css">
+<style>
+  :root {
+    --terre: #8b4513;
+    --ocre: #c8964a;
+    --creme: #f7f0e1;
+    --vin: #6b1f1f;
+    --noir: #2c1810;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lora', serif; background: var(--creme); color: var(--noir); line-height: 1.7; }
+  h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+  /* HERO carrousel */
+  .hero { position: relative; height: 100vh; min-height: 620px; overflow: hidden; }
+  .slides { position: absolute; inset: 0; }
+  .slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.4s ease;
+  }
+  .slide.active { opacity: 1; }
+  .slide.s1 { background-image: linear-gradient(rgba(44,24,16,0.5), rgba(44,24,16,0.7)), url('../assets/charcuterie-1.jpg'); }
+  .slide.s2 { background-image: linear-gradient(rgba(44,24,16,0.5), rgba(44,24,16,0.7)), url('../assets/charcuterie-2.jpg'); }
+  .slide.s3 { background-image: linear-gradient(rgba(44,24,16,0.5), rgba(44,24,16,0.7)), url('../assets/fromage.jpg'); }
+
+  .hero-content {
+    position: relative; z-index: 2; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    color: var(--creme); padding: 0 24px;
+  }
+  .ornement { color: var(--ocre); font-size: 24px; letter-spacing: 1em; margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(56px, 9vw, 120px); line-height: 1; margin-bottom: 32px; max-width: 1000px; }
+  .hero h1 span { color: var(--ocre); font-style: italic; }
+  .hero-sub { font-size: 18px; max-width: 600px; opacity: 0.9; margin-bottom: 40px; }
+
+  .hero-corso-seal {
+    position: absolute;
+    bottom: 120px;
+    right: 28px;
+    z-index: 4;
+    width: 64px;
+    height: 64px;
+    padding: 6px;
+    border-radius: 50%;
+    background: rgba(247, 240, 225, 0.12);
+    border: 2px solid rgba(200, 150, 74, 0.65);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-corso-seal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .dots { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 3; }
+  .dot { width: 40px; height: 2px; background: rgba(255,255,255,0.4); cursor: pointer; transition: background .3s; }
+  .dot.active { background: var(--ocre); }
+  .arrows { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 32px; z-index: 3; pointer-events: none; }
+  .arrows button { pointer-events: auto; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); color: white; width: 56px; height: 56px; border-radius: 50%; font-size: 20px; cursor: pointer; transition: all .25s; }
+  .arrows button:hover { background: var(--ocre); border-color: var(--ocre); }
+
+  .btn {
+    display: inline-block; padding: 18px 40px; background: var(--ocre); color: var(--noir);
+    text-decoration: none; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px;
+    border: 2px solid var(--ocre); transition: all .3s; font-family: 'Lora', serif;
+  }
+  .btn:hover { background: transparent; color: var(--creme); }
+
+  /* Sections */
+  section { padding: 120px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .ornement-h { color: var(--ocre); text-align: center; letter-spacing: 0.5em; font-size: 14px; margin-bottom: 16px; }
+  .h-title { text-align: center; font-size: clamp(40px, 6vw, 72px); margin-bottom: 24px; }
+  .h-sub { text-align: center; max-width: 640px; margin: 0 auto 64px; color: #6b4a35; font-size: 17px; font-style: italic; }
+
+  /* About */
+  .about { background: white; }
+  .about-flex { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+  .about-img-frame {
+    aspect-ratio: 4/5; background: url('../assets/charcuterie-2.jpg') center/cover;
+    border: 12px solid white; box-shadow: 0 20px 60px rgba(44,24,16,0.2);
+    transform: rotate(-2deg);
+  }
+  .about-text h2 { font-size: 56px; margin-bottom: 24px; line-height: 1.05; }
+  .about-text h2 em { color: var(--vin); }
+  .about-text p { color: #5a4030; margin-bottom: 16px; font-size: 17px; }
+
+  /* Services */
+  .services { background: var(--noir); color: var(--creme); }
+  .services .h-title { color: var(--creme); }
+  .services .h-sub { color: rgba(247,240,225,0.7); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .service-card {
+    background: rgba(247,240,225,0.04); border: 1px solid rgba(200,150,74,0.2); padding: 40px; transition: all .3s;
+  }
+  .service-card:hover { background: rgba(200,150,74,0.08); border-color: var(--ocre); transform: translateY(-4px); }
+  .service-card .num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--ocre); line-height: 1; }
+  .service-card h3 { font-size: 28px; margin: 16px 0 12px; }
+  .service-card p { color: rgba(247,240,225,0.7); font-size: 15px; }
+
+  /* Plateaux */
+  .plats { background: var(--creme); }
+  .plats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .plat-card {
+    background: white; padding: 48px 32px; text-align: center; border: 1px solid #e8dcc4;
+    position: relative; transition: all .35s; overflow: hidden;
+  }
+  .plat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--ocre); transform: scaleX(0); transition: transform .35s; transform-origin: left; }
+  .plat-card:hover::before { transform: scaleX(1); }
+  .plat-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(44,24,16,0.12); }
+  .plat-card .label { color: var(--ocre); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .plat-card .poids { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--vin); margin: 16px 0 8px; }
+  .plat-card .prix { font-size: 32px; color: var(--noir); font-weight: 600; }
+  .plat-card .desc { color: #6b4a35; font-style: italic; margin-top: 16px; font-size: 14px; }
+
+  /* Marchés */
+  .marches { background: linear-gradient(180deg, var(--vin) 0%, #4a1414 100%); color: var(--creme); text-align: center; }
+  .marches .h-title { color: var(--creme); }
+  .marches .h-sub { color: rgba(247,240,225,0.7); }
+  .villes-row { display: flex; justify-content: center; gap: 64px; flex-wrap: wrap; margin-top: 32px; }
+  .ville-block { padding: 24px; }
+  .ville-name { font-family: 'DM Serif Display', serif; font-size: 56px; color: var(--ocre); }
+  .ville-meta { font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 8px; opacity: 0.8; }
+
+  /* Contact */
+  .contact { background: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .contact-info h3 { font-size: 36px; color: var(--noir); margin-bottom: 16px; }
+  .contact-info > p { color: #6b4a35; margin-bottom: 32px; font-style: italic; font-size: 17px; }
+  .info-line { padding: 16px 0; border-bottom: 1px dashed #d9c89c; }
+  .info-line .label { color: var(--ocre); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-line .val { color: var(--noir); font-size: 19px; font-family: 'DM Serif Display', serif; }
+
+  form { display: grid; gap: 18px; background: var(--creme); padding: 40px; border: 1px solid #e8dcc4; }
+  form label { display: block; font-size: 11px; color: var(--ocre); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+  form input, form textarea, form select {
+    width: 100%; padding: 14px; background: white; border: 1px solid #e8dcc4; font-family: inherit; font-size: 15px;
+  }
+  form input:focus, form textarea:focus, form select:focus { outline: none; border-color: var(--ocre); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form .btn { border: none; cursor: pointer; padding: 18px; }
+
+  footer { padding: 32px; background: var(--noir); color: rgba(247,240,225,0.6); text-align: center; font-size: 13px; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--ocre);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 800px) {
+    .about-flex, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid, .plats-grid { grid-template-columns: 1fr; }
+    .row2 { grid-template-columns: 1fr; }
+    .hero-corso-seal { bottom: 100px; right: 16px; width: 52px; height: 52px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-menu">← Maquettes</a>
+
+<section class="hero">
+  <div class="hero-corso-seal" title="Corse">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Flag_of_Corsica.svg" alt="">
+  </div>
+  <div class="slides">
+    <div class="slide s1 active"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+  </div>
+  <div class="arrows">
+    <button id="prev">‹</button>
+    <button id="next">›</button>
+  </div>
+  <div class="hero-content">
+    <div class="ornement">✦  ✦  ✦</div>
+    <h1>La <span>tradition</span> corse,<br>servie avec le cœur.</h1>
+    <p class="hero-sub">Charcuterie, fromages et plateaux artisanaux — pour vos marchés, mariages et réceptions.</p>
+    <a href="#contact" class="btn">Commander un plateau</a>
+  </div>
+  <div class="dots">
+    <div class="dot active" data-i="0"></div>
+    <div class="dot" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <div class="about-flex">
+      <div class="about-img-frame"></div>
+      <div class="about-text">
+        <div style="color:var(--ocre);letter-spacing:0.3em;font-size:12px;text-transform:uppercase;margin-bottom:12px">Maison familiale · 1963</div>
+        <h2>L'authenticité <em>insulaire</em> à votre porte.</h2>
+        <p>Santi vous accueille toujours avec le sourire, ce sourire chaleureux qui fait l'âme de la Corse. Trois générations de passionnés, une exigence : la qualité.</p>
+        <p>Coppa, lonzu, figatellu, fromages affinés au lait cru… Chaque produit raconte une histoire, celle d'un terroir et d'une famille.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <div class="ornement-h">— Nos services —</div>
+    <h2 class="h-title">Pour chaque <em style="color:var(--ocre);font-style:italic">occasion</em></h2>
+    <p class="h-sub">De votre quotidien aux plus grands moments, nous sommes à vos côtés.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="num">01</div><h3>Animation découpe — Mariages</h3><p>Une attraction conviviale et délicieuse, en direct devant vos invités.</p></div>
+      <div class="service-card"><div class="num">02</div><h3>Réceptions privées & pro</h3><p>Plateaux composés sur mesure pour vos événements.</p></div>
+      <div class="service-card"><div class="num">03</div><h3>Vente sous vide</h3><p>Expédition partout en France, conservation optimale.</p></div>
+      <div class="service-card"><div class="num">04</div><h3>Livraison à domicile</h3><p>Plateaux livrés frais à la date que vous choisissez.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="plats">
+  <div class="container">
+    <div class="ornement-h">— Plateaux livraison —</div>
+    <h2 class="h-title">Trois formats <em style="color:var(--vin);font-style:italic">généreux</em></h2>
+    <p class="h-sub">Choisissez selon vos envies et le nombre de convives.</p>
+    <div class="plats-grid">
+      <div class="plat-card"><div class="label">Apéro</div><div class="poids">900g</div><div class="prix">29€</div><div class="desc">2 à 3 personnes</div></div>
+      <div class="plat-card"><div class="label">Soirée</div><div class="poids">1,4kg</div><div class="prix">39€</div><div class="desc">4 à 6 personnes</div></div>
+      <div class="plat-card"><div class="label">Réception</div><div class="poids">1,9kg</div><div class="prix">59€</div><div class="desc">6 à 8 personnes</div></div>
+    </div>
+    <p style="text-align:center;margin-top:48px;color:#6b4a35;font-style:italic">Produits sous vide également disponibles à la commande.</p>
+  </div>
+</section>
+
+<section class="marches">
+  <div class="container">
+    <div class="ornement-h" style="color:var(--ocre)">— Sur les marchés —</div>
+    <h2 class="h-title">Venez nous <em style="color:var(--ocre);font-style:italic">rencontrer</em></h2>
+    <div class="villes-row">
+      <div class="ville-block"><div class="ville-name">Dourdan</div><div class="ville-meta">Marché</div></div>
+      <div class="ville-block"><div class="ville-name">Gouvieux</div><div class="ville-meta">Marché</div></div>
+      <div class="ville-block"><div class="ville-name">Senlis</div><div class="ville-meta">Marché</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="ornement-h">— Contact —</div>
+    <h2 class="h-title">Discutons <em style="color:var(--vin);font-style:italic">ensemble</em></h2>
+    <div class="contact-grid" style="margin-top:64px">
+      <div class="contact-info">
+        <h3>À votre écoute</h3>
+        <p>Pour une commande, un événement ou simplement un conseil, contactez-nous. Toujours avec le sourire.</p>
+        <div class="info-line"><div class="label">Téléphone</div><div class="val">06 XX XX XX XX</div></div>
+        <div class="info-line"><div class="label">Email</div><div class="val">contact@santi-corse.fr</div></div>
+        <div class="info-line"><div class="label">Marchés</div><div class="val">Dourdan · Gouvieux · Senlis</div></div>
+        <div class="info-line"><div class="label">Délai de réponse</div><div class="val">24h maximum</div></div>
+      </div>
+      <form>
+        <div class="row2">
+          <div><label>Prénom</label><input type="text" required></div>
+          <div><label>Nom</label><input type="text" required></div>
+        </div>
+        <div class="row2">
+          <div><label>Email</label><input type="email" required></div>
+          <div><label>Téléphone</label><input type="tel"></div>
+        </div>
+        <div><label>Type de demande</label>
+          <select><option>Mariage / Animation découpe</option><option>Réception</option><option>Plateau livraison</option><option>Vente sous vide</option><option>Autre</option></select>
+        </div>
+        <div><label>Message</label><textarea rows="4"></textarea></div>
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Maison Santi · Tradition corse depuis 1963</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  let i = 0;
+  function go(n) {
+    slides[i].classList.remove('active'); dots[i].classList.remove('active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('active'); dots[i].classList.add('active');
+  }
+  document.getElementById('prev').onclick = () => go(i-1);
+  document.getElementById('next').onclick = () => go(i+1);
+  dots.forEach(d => d.onclick = () => go(parseInt(d.dataset.i)));
+  setInterval(() => go(i+1), 5000);
+</script>
+
+</body>
+</html>
